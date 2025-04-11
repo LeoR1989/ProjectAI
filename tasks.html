@@ -4,8 +4,8 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>任务中心 - 游戏平台</title>
-  <link rel="stylesheet" href="/css/styles.css">
-  <link rel="stylesheet" href="/css/modern-ui.css">
+  <link rel="stylesheet" href="public/css/styles.css">
+  <link rel="stylesheet" href="public/css/modern-ui.css">
   <!-- 引入字体 -->
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
 </head>
@@ -250,8 +250,8 @@
   </div>
   
   <!-- 脚本 -->
-  <script src="/js/icons.js"></script>
-  <script src="/js/utils.js"></script>
+  <script src="public/js/icons.js"></script>
+  <script src="public/js/utils.js"></script>
   <script>
     // 等待DOM加载完成
     document.addEventListener('DOMContentLoaded', function() {
@@ -329,89 +329,66 @@
     }
     
     // 模拟任务数据
-    const grabTasks = [
+    const tasks = [
       {
         id: "1",
-        title: "连续登录7天",
-        description: "连续7天登录游戏平台",
-        reward: 300,
-        difficulty: "简单",
-        expiresIn: "20小时",
+        title: "每日签到",
+        description: "连续签到7天可获得额外奖励",
+        reward: "100金币",
         progress: 5,
-        total: 7
+        total: 7,
+        status: "进行中",
+        icon: "public/images/tasks/signin.png"
       },
       {
         id: "2",
-        title: "完成3场排位赛",
-        description: "在任意游戏中完成3场排位比赛",
-        reward: 450,
-        difficulty: "中等",
-        expiresIn: "2天",
+        title: "新手任务",
+        description: "完成新手引导",
+        reward: "新手礼包",
         progress: 1,
-        total: 3
+        total: 1,
+        status: "已完成",
+        icon: "public/images/tasks/guide.png"
       },
       {
         id: "3",
-        title: "邀请新用户",
-        description: "成功邀请1名新用户注册并完成新手任务",
-        reward: 650,
-        difficulty: "中等",
-        expiresIn: "5天",
-        progress: 0,
-        total: 1
-      }
-    ];
-    
-    const ladderTasks = [
+        title: "好友邀请",
+        description: "邀请3位好友加入游戏",
+        reward: "500金币",
+        progress: 1,
+        total: 3,
+        status: "进行中",
+        icon: "public/images/tasks/invite.png"
+      },
       {
         id: "4",
-        title: "游戏时长累计",
-        description: "在平台游戏累计游戏时长，获得对应奖励",
-        levels: [
-          { time: "1小时", reward: 100 },
-          { time: "3小时", reward: 350 },
-          { time: "5小时", reward: 700 },
-          { time: "10小时", reward: 1500 }
-        ],
-        currentTime: "2小时35分钟"
+        title: "等级提升",
+        description: "将角色等级提升至10级",
+        reward: "稀有装备",
+        progress: 7,
+        total: 10,
+        status: "进行中",
+        icon: "public/images/tasks/level.png"
       },
       {
         id: "5",
-        title: "好友互动",
-        description: "与好友进行游戏互动，获得对应奖励",
-        levels: [
-          { count: "添加5个好友", reward: 200 },
-          { count: "赠送3次礼物", reward: 450 },
-          { count: "组队游戏10次", reward: 900 }
-        ],
-        currentCount: "已添加3个好友"
-      }
-    ];
-    
-    const oneTimeTasks = [
+        title: "竞技场",
+        description: "在竞技场中获得5场胜利",
+        reward: "竞技场宝箱",
+        progress: 3,
+        total: 5,
+        status: "进行中",
+        icon: "public/images/tasks/arena.png"
+      },
       {
         id: "6",
-        title: "完善个人资料",
-        description: "完善个人资料信息",
-        reward: 150,
-        completed: false,
-        type: "新手"
-      },
-      {
-        id: "7",
-        title: "绑定手机号",
-        description: "为账号绑定一个手机号",
-        reward: 300,
-        completed: true,
-        type: "账号"
-      },
-      {
-        id: "8",
-        title: "首次充值",
-        description: "首次为账号充值任意金额",
-        reward: 500,
-        completed: false,
-        type: "特殊"
+        title: "公会任务",
+        description: "参与公会活动3次",
+        reward: "公会贡献",
+        progress: 0,
+        total: 3,
+        status: "未开始",
+        icon: "public/images/tasks/guild.png"
       }
     ];
     
@@ -450,7 +427,7 @@
     function loadTasks() {
       // 抢单任务
       const grabTasksList = document.getElementById('grabTasksList');
-      grabTasks.forEach(task => {
+      tasks.forEach(task => {
         const taskCard = document.createElement('div');
         taskCard.className = 'card card-modern task-card p-4';
         
@@ -460,8 +437,7 @@
               <h3 class="font-bold mb-1">${task.title}</h3>
               <p class="text-sm text-muted mb-2">${task.description}</p>
               <div class="flex items-center gap-2 mb-2">
-                <span class="badge badge-modern badge-secondary-modern">${task.difficulty}</span>
-                <span class="text-xs text-muted">剩余: ${task.expiresIn}</span>
+                <span class="badge badge-modern badge-secondary-modern">${task.status}</span>
               </div>
               <div class="w-full mb-2">
                 <div class="progress-bar">
@@ -484,79 +460,6 @@
         `;
         
         grabTasksList.appendChild(taskCard);
-      });
-      
-      // 阶梯任务
-      const ladderTasksList = document.getElementById('ladderTasksList');
-      ladderTasks.forEach(task => {
-        const taskCard = document.createElement('div');
-        taskCard.className = 'card card-modern task-card p-4';
-        
-        let levelsHTML = '';
-        task.levels.forEach(level => {
-          levelsHTML += `
-            <div class="flex justify-between items-center border-b border-muted py-2">
-              <span>${level.time || level.count}</span>
-              <div class="flex items-center">
-                <span class="icon-gem mr-1 text-primary"></span>
-                <span>${level.reward}</span>
-              </div>
-            </div>
-          `;
-        });
-        
-        taskCard.innerHTML = `
-          <div>
-            <div class="flex justify-between items-start mb-3">
-              <div>
-                <h3 class="font-bold mb-1">${task.title}</h3>
-                <p class="text-sm text-muted">${task.description}</p>
-              </div>
-              <span class="badge badge-modern badge-primary-modern">阶梯奖励</span>
-            </div>
-            <div class="mb-3">
-              ${levelsHTML}
-            </div>
-            <div class="flex justify-between items-center">
-              <span class="text-sm">${task.currentTime || task.currentCount}</span>
-              <button class="btn btn-secondary btn-modern btn-secondary-modern btn-sm" onclick="alert('查看任务详情：${task.title}')">查看详情</button>
-            </div>
-          </div>
-        `;
-        
-        ladderTasksList.appendChild(taskCard);
-      });
-      
-      // 一次性任务
-      const oneTimeTasksList = document.getElementById('oneTimeTasksList');
-      oneTimeTasks.forEach(task => {
-        const taskCard = document.createElement('div');
-        taskCard.className = 'card card-modern task-card p-4';
-        
-        taskCard.innerHTML = `
-          <div class="flex justify-between items-start">
-            <div>
-              <h3 class="font-bold mb-1">${task.title}</h3>
-              <p class="text-sm text-muted mb-2">${task.description}</p>
-              <div class="flex items-center gap-2">
-                <span class="badge badge-modern badge-secondary-modern">${task.type}</span>
-                <span class="text-xs ${task.completed ? 'text-primary' : 'text-muted'}">${task.completed ? '已完成' : '未完成'}</span>
-              </div>
-            </div>
-            <div class="flex flex-col items-end">
-              <div class="flex items-center text-primary font-bold mb-2">
-                <span class="icon-gem mr-1"></span>
-                <span>${task.reward}</span>
-              </div>
-              <button class="btn ${task.completed ? 'btn-secondary btn-modern btn-secondary-modern' : 'btn-primary btn-modern btn-primary-modern'} btn-sm" 
-                     onclick="alert('${task.completed ? '任务已完成' : '开始完成任务：' + task.title}')">
-                ${task.completed ? '已领取' : '完成任务'}
-              </button>
-            </div>
-          </div>
-        `;
-        
-        oneTimeTasksList.appendChild(taskCard);
       });
       
       // 任务记录
