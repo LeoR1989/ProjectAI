@@ -1,7 +1,0 @@
-{
-  "/page": "app/page.js",
-  "/tasks/page": "app/tasks/page.js",
-  "/games/page": "app/games/page.js",
-  "/messages/page": "app/messages/page.js",
-  "/profile/page": "app/profile/page.js"
-}

@@ -1,0 +1,378 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>游戏平台</title>
+  <link rel="stylesheet" href="public/css/styles.css">
+  <link rel="stylesheet" href="public/css/modern-ui.css">
+  <!-- 引入字体 -->
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+</head>
+<body>
+  <!-- 头部导航 -->
+  <header class="header header-modern">
+    <div class="container">
+      <div class="nav">
+        <div class="flex items-center">
+          <!-- 移动端菜单按钮 -->
+          <button id="menuBtn" class="btn btn-ghost btn-modern btn-ghost-modern md:hidden mr-2">
+            <span class="icon-menu"></span>
+          </button>
+          
+          <!-- Logo -->
+          <a href="index.html" class="flex items-center gap-2 font-bold">
+            <span class="icon-gamepad"></span>
+            <span class="hidden md:block">游戏平台</span>
+          </a>
+        </div>
+        
+        <!-- 导航菜单 -->
+        <nav class="hidden md:flex flex-1 justify-between items-center">
+          <ul class="nav-menu">
+            <li class="nav-item">
+              <a href="index.html" class="nav-link nav-link-modern active">首页</a>
+            </li>
+            <li class="nav-item" id="gameMenuTrigger">
+              <a href="#" class="nav-link nav-link-modern">游戏中心</a>
+            </li>
+            <li class="nav-item">
+              <a href="#" class="nav-link nav-link-modern">消息</a>
+            </li>
+            <li class="nav-item">
+              <a href="tasks.html" class="nav-link nav-link-modern">任务</a>
+            </li>
+          </ul>
+          
+          <div class="flex items-center gap-2">
+            <!-- 搜索框 -->
+            <div class="relative hidden md:flex w-40 lg:w-64">
+              <span class="icon-search" style="position: absolute; left: 8px; top: 50%; transform: translateY(-50%);"></span>
+              <input type="text" class="input input-modern pl-8" placeholder="搜索...">
+            </div>
+            
+            <!-- 通知按钮 -->
+            <button class="btn btn-ghost btn-modern btn-ghost-modern p-2">
+              <span class="icon-bell"></span>
+            </button>
+            
+            <!-- 移动端搜索按钮 -->
+            <button class="btn btn-ghost btn-modern btn-ghost-modern p-2 md:hidden">
+              <span class="icon-search"></span>
+            </button>
+            
+            <!-- 用户头像 -->
+            <div class="avatar avatar-modern">
+              <img src="public/images/avatars/user1.jpg" alt="用户头像">
+            </div>
+          </div>
+        </nav>
+      </div>
+    </div>
+  </header>
+  
+  <!-- 侧边菜单 (移动端) -->
+  <div id="sideMenu" class="fixed inset-0 bg-black bg-opacity-50 z-50 hidden">
+    <div class="bg-background card-glass h-full w-4/5 max-w-sm p-4 transform transition-transform animate-slideUp">
+      <div class="flex justify-between items-center mb-6">
+        <h2 class="font-bold text-xl">菜单</h2>
+        <button id="closeMenu" class="btn btn-ghost btn-modern btn-ghost-modern p-2">×</button>
+      </div>
+      
+      <div class="grid gap-4">
+        <a href="index.html" class="flex items-center gap-2 p-2 rounded hover:bg-muted">
+          <span class="icon-home"></span>
+          首页
+        </a>
+        <a href="#" class="flex items-center gap-2 p-2 rounded hover:bg-muted">
+          <span class="icon-gamepad"></span>
+          游戏中心
+        </a>
+        <a href="#" class="flex items-center gap-2 p-2 rounded hover:bg-muted">
+          <span class="icon-message"></span>
+          消息
+        </a>
+        <a href="#" class="flex items-center gap-2 p-2 rounded hover:bg-muted">
+          <span class="icon-user"></span>
+          个人资料
+        </a>
+        <a href="tasks.html" class="flex items-center gap-2 p-2 rounded hover:bg-muted">
+          <span class="icon-trophy"></span>
+          任务中心
+        </a>
+        
+        <hr class="my-2 border-t border-muted">
+        
+        <a href="#" class="flex items-center gap-2 p-2 rounded hover:bg-muted">
+          <span class="icon-settings"></span>
+          设置
+        </a>
+        <a href="#" class="flex items-center gap-2 p-2 rounded hover:bg-muted">
+          <span class="icon-logout"></span>
+          退出登录
+        </a>
+      </div>
+    </div>
+  </div>
+  
+  <!-- 主要内容 -->
+  <main class="pb-20">
+    <!-- 游戏中心 -->
+    <section class="container py-6 animate-fadeIn">
+      <div class="flex items-center justify-between mb-6">
+        <h2 class="text-2xl font-bold">游戏中心</h2>
+        <a href="#" class="btn btn-secondary btn-modern btn-secondary-modern">查看全部</a>
+      </div>
+      
+      <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-4" id="gamesList">
+        <!-- 游戏卡片会通过JS动态加载 -->
+      </div>
+    </section>
+  </main>
+  
+  <!-- 底部导航 -->
+  <nav class="bottom-nav bottom-nav-modern">
+    <div class="bottom-nav-content">
+      <a href="index.html" class="bottom-nav-item bottom-nav-item-modern active">
+        <span class="icon-home"></span>
+        <span class="bottom-nav-label">首页</span>
+      </a>
+      <a href="#" class="bottom-nav-item bottom-nav-item-modern">
+        <span class="icon-gamepad"></span>
+        <span class="bottom-nav-label">游戏</span>
+      </a>
+      <a href="#" class="bottom-nav-item bottom-nav-item-modern">
+        <span class="icon-message"></span>
+        <span class="bottom-nav-label">消息</span>
+      </a>
+      <a href="#" class="bottom-nav-item bottom-nav-item-modern">
+        <span class="icon-user"></span>
+        <span class="bottom-nav-label">我的</span>
+      </a>
+    </div>
+  </nav>
+  
+  <!-- 游戏菜单弹出框 -->
+  <div id="gameMenu" class="fixed left-0 top-14 hidden bg-background card-glass rounded shadow-lg p-4 z-20 animate-fadeIn">
+    <div class="grid grid-cols-2 gap-3 w-[500px]">
+      <a href="#" class="p-3 rounded hover:bg-muted">
+        <div class="font-medium">动作游戏</div>
+        <p class="text-sm text-muted">刺激的动作游戏，包括射击、格斗等类型</p>
+      </a>
+      <a href="#" class="p-3 rounded hover:bg-muted">
+        <div class="font-medium">角色扮演</div>
+        <p class="text-sm text-muted">沉浸式的角色扮演游戏，体验不同的世界和故事</p>
+      </a>
+      <a href="#" class="p-3 rounded hover:bg-muted">
+        <div class="font-medium">策略游戏</div>
+        <p class="text-sm text-muted">需要思考和规划的策略游戏，挑战你的智慧</p>
+      </a>
+      <a href="#" class="p-3 rounded hover:bg-muted">
+        <div class="font-medium">休闲游戏</div>
+        <p class="text-sm text-muted">轻松有趣的休闲游戏，适合随时随地玩</p>
+      </a>
+    </div>
+  </div>
+  
+  <!-- 脚本 -->
+  <script src="public/js/icons.js"></script>
+  <script src="public/js/utils.js"></script>
+  <script>
+    // 等待DOM加载完成
+    document.addEventListener('DOMContentLoaded', function() {
+      // 初始化图标
+      initIcons();
+      
+      // 加载游戏列表
+      loadGames();
+      
+      // 绑定事件
+      bindEvents();
+    });
+    
+    // 初始化所有图标
+    function initIcons() {
+      // 菜单图标
+      document.querySelectorAll('.icon-menu').forEach(el => {
+        Icons.insert(el, 'menu', 20);
+      });
+      
+      // 游戏手柄图标
+      document.querySelectorAll('.icon-gamepad').forEach(el => {
+        Icons.insert(el, 'gamepad2', 20);
+      });
+      
+      // 首页图标
+      document.querySelectorAll('.icon-home').forEach(el => {
+        Icons.insert(el, 'home', 20);
+      });
+      
+      // 消息图标
+      document.querySelectorAll('.icon-message').forEach(el => {
+        Icons.insert(el, 'messageCircle', 20);
+      });
+      
+      // 用户图标
+      document.querySelectorAll('.icon-user').forEach(el => {
+        Icons.insert(el, 'user', 20);
+      });
+      
+      // 奖杯图标
+      document.querySelectorAll('.icon-trophy').forEach(el => {
+        Icons.insert(el, 'trophy', 20);
+      });
+      
+      // 设置图标
+      document.querySelectorAll('.icon-settings').forEach(el => {
+        Icons.insert(el, 'settings', 20);
+      });
+      
+      // 退出图标
+      document.querySelectorAll('.icon-logout').forEach(el => {
+        Icons.insert(el, 'logOut', 20);
+      });
+      
+      // 搜索图标
+      document.querySelectorAll('.icon-search').forEach(el => {
+        Icons.insert(el, 'search', 20);
+      });
+      
+      // 通知图标
+      document.querySelectorAll('.icon-bell').forEach(el => {
+        Icons.insert(el, 'bell', 20);
+      });
+    }
+    
+    // 模拟游戏数据
+    const games = [
+      {
+        id: "1",
+        title: "星际战争",
+        image: "public/images/games/space.jpg",
+        category: "策略",
+        rating: 4.8,
+        players: 1500
+      },
+      {
+        id: "2",
+        title: "幻影刺客",
+        image: "public/images/games/ninja.jpg",
+        category: "动作",
+        rating: 4.6,
+        players: 1200
+      },
+      {
+        id: "3",
+        title: "农场物语",
+        image: "public/images/games/farm.jpg",
+        category: "模拟",
+        rating: 4.3,
+        players: 950
+      },
+      {
+        id: "4",
+        title: "魔法学院",
+        image: "public/images/games/magic.jpg",
+        category: "角色扮演",
+        rating: 4.7,
+        players: 1350
+      },
+      {
+        id: "5",
+        title: "赛车传奇",
+        image: "public/images/games/racing.jpg",
+        category: "竞速",
+        rating: 4.5,
+        players: 1100
+      },
+      {
+        id: "6",
+        title: "方块消除",
+        image: "public/images/games/puzzle.jpg",
+        category: "休闲",
+        rating: 4.2,
+        players: 2000
+      }
+    ];
+    
+    // 加载游戏列表
+    function loadGames() {
+      const gamesListEl = document.getElementById('gamesList');
+      
+      games.forEach(game => {
+        const gameCard = document.createElement('div');
+        gameCard.className = 'card game-card animate-slideUp';
+        
+        gameCard.innerHTML = `
+          <div class="relative">
+            <img src="${game.image}" alt="${game.title}" class="w-full h-40 object-cover game-card-img">
+            <span class="badge badge-modern badge-primary-modern absolute top-2 right-2">${game.category}</span>
+          </div>
+          <div class="p-4">
+            <h3 class="font-bold mb-1">${game.title}</h3>
+            <div class="flex justify-between items-center">
+              <div class="flex items-center">
+                <span class="icon-star text-primary mr-1"></span>
+                <span>${game.rating}</span>
+              </div>
+              <div class="flex items-center text-sm text-muted">
+                <span class="icon-users mr-1"></span>
+                <span>${game.players}</span>
+              </div>
+            </div>
+            <button class="btn btn-primary-modern btn-modern w-full mt-2" onclick="alert('游戏《${game.title}》即将开始！')">开始游戏</button>
+          </div>
+        `;
+        
+        gamesListEl.appendChild(gameCard);
+      });
+      
+      // 添加星星图标
+      document.querySelectorAll('.icon-star').forEach(el => {
+        Icons.insert(el, 'star', 16);
+      });
+      
+      // 添加用户图标
+      document.querySelectorAll('.icon-users').forEach(el => {
+        Icons.insert(el, 'users', 16);
+      });
+    }
+    
+    // 绑定事件
+    function bindEvents() {
+      // 菜单按钮点击事件
+      const menuBtn = document.getElementById('menuBtn');
+      const closeMenuBtn = document.getElementById('closeMenu');
+      const sideMenu = document.getElementById('sideMenu');
+      
+      menuBtn.addEventListener('click', () => {
+        sideMenu.classList.remove('hidden');
+      });
+      
+      closeMenuBtn.addEventListener('click', () => {
+        sideMenu.classList.add('hidden');
+      });
+      
+      // 游戏菜单触发
+      const gameMenuTrigger = document.getElementById('gameMenuTrigger');
+      const gameMenu = document.getElementById('gameMenu');
+      
+      gameMenuTrigger.addEventListener('mouseenter', () => {
+        gameMenu.classList.remove('hidden');
+      });
+      
+      gameMenuTrigger.addEventListener('mouseleave', () => {
+        setTimeout(() => {
+          if (!gameMenu.matches(':hover')) {
+            gameMenu.classList.add('hidden');
+          }
+        }, 100);
+      });
+      
+      gameMenu.addEventListener('mouseleave', () => {
+        gameMenu.classList.add('hidden');
+      });
+    }
+  </script>
+</body>
+</html> 
