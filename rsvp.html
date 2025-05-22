@@ -1,0 +1,414 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>在线回复 - 李让 & 杨清的婚礼邀请</title>
+    <link rel="stylesheet" href="css/styles.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Ma+Shan+Zheng&family=ZCOOL+KuaiLe&family=ZCOOL+QingKe+HuangYou&display=swap" rel="stylesheet">
+    <style>
+        /* RSVP页面特殊样式 */
+        .rsvp-container {
+            padding: 120px 20px 50px;
+            max-width: 800px;
+            margin: 0 auto;
+        }
+        
+        .rsvp-title {
+            font-family: var(--font-title);
+            font-size: 3rem;
+            color: var(--secondary-color);
+            text-align: center;
+            margin-bottom: 30px;
+            text-shadow: 2px 2px 0 white;
+        }
+        
+        .rsvp-title::after {
+            content: '';
+            display: block;
+            width: 150px;
+            height: 5px;
+            background: var(--primary-color);
+            margin: 15px auto;
+            border-radius: 5px;
+        }
+        
+        .rsvp-intro {
+            text-align: center;
+            font-family: var(--font-text);
+            font-size: 1.2rem;
+            color: var(--dark-accent);
+            margin-bottom: 30px;
+            background-color: var(--light-background);
+            padding: 20px;
+            border-radius: 15px;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+            border: 3px dashed var(--secondary-color);
+        }
+        
+        .deadline {
+            font-weight: bold;
+            color: var(--secondary-color);
+            font-size: 1.3rem;
+            margin-top: 10px;
+        }
+        
+        .rsvp-form-container {
+            background-color: white;
+            padding: 30px;
+            border-radius: 20px;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+            border: 5px solid var(--primary-color);
+            position: relative;
+        }
+        
+        .form-decoration {
+            position: absolute;
+            width: 80px;
+            height: 80px;
+            background-size: contain;
+            background-repeat: no-repeat;
+        }
+        
+        .deco-1 {
+            top: -30px;
+            right: -30px;
+            background-image: url('images/egg-deco.png');
+            transform: rotate(15deg);
+        }
+        
+        .deco-2 {
+            bottom: -30px;
+            left: -30px;
+            background-image: url('images/hearts-deco.png');
+            transform: rotate(-15deg);
+        }
+        
+        .form-group {
+            margin-bottom: 25px;
+        }
+        
+        .form-label {
+            display: block;
+            font-family: var(--font-heading);
+            font-size: 1.3rem;
+            color: var(--dark-accent);
+            margin-bottom: 8px;
+        }
+        
+        .form-required::after {
+            content: '*';
+            color: var(--secondary-color);
+            margin-left: 5px;
+        }
+        
+        .form-input, .form-textarea, .form-select {
+            width: 100%;
+            padding: 12px 15px;
+            border: 2px solid var(--accent-color-1);
+            border-radius: 10px;
+            font-family: var(--font-text);
+            font-size: 1.1rem;
+            color: var(--dark-accent);
+            background-color: var(--light-background);
+            transition: all 0.3s ease;
+        }
+        
+        .form-input:focus, .form-textarea:focus, .form-select:focus {
+            outline: none;
+            border-color: var(--primary-color);
+            box-shadow: 0 0 8px rgba(255, 218, 99, 0.6);
+        }
+        
+        .form-textarea {
+            resize: vertical;
+            min-height: 100px;
+        }
+        
+        .radio-group {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 15px;
+            margin-top: 10px;
+        }
+        
+        .radio-label {
+            display: flex;
+            align-items: center;
+            cursor: pointer;
+            font-family: var(--font-text);
+            font-size: 1.1rem;
+            color: var(--dark-accent);
+        }
+        
+        .radio-input {
+            margin-right: 8px;
+            cursor: pointer;
+        }
+        
+        .number-input {
+            width: 100px;
+            text-align: center;
+        }
+        
+        .submit-btn {
+            display: block;
+            width: 100%;
+            padding: 15px;
+            background-color: var(--secondary-color);
+            border: none;
+            border-radius: 50px;
+            color: white;
+            font-family: var(--font-heading);
+            font-size: 1.5rem;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            margin-top: 30px;
+            border: 2px solid white;
+            box-shadow: 0 4px 0 rgba(0,0,0,0.1);
+        }
+        
+        .submit-btn:hover {
+            background-color: var(--primary-color);
+            color: var(--dark-accent);
+            transform: translateY(-5px);
+            box-shadow: 0 7px 0 rgba(0,0,0,0.1);
+        }
+        
+        .submit-btn:active {
+            transform: translateY(0);
+            box-shadow: 0 2px 0 rgba(0,0,0,0.1);
+        }
+        
+        .form-note {
+            font-size: 0.9rem;
+            color: var(--dark-accent);
+            margin-top: 5px;
+            font-style: italic;
+        }
+        
+        .form-success {
+            display: none;
+            text-align: center;
+            padding: 30px;
+            background-color: var(--accent-color-1);
+            border-radius: 15px;
+            margin-top: 30px;
+        }
+        
+        .success-title {
+            font-family: var(--font-title);
+            font-size: 2rem;
+            color: var(--dark-accent);
+            margin-bottom: 15px;
+        }
+        
+        .success-message {
+            font-family: var(--font-text);
+            font-size: 1.2rem;
+            color: var(--dark-accent);
+            line-height: 1.6;
+        }
+        
+        .success-icon {
+            font-size: 4rem;
+            color: var(--secondary-color);
+            margin-bottom: 15px;
+        }
+        
+        @media screen and (max-width: 768px) {
+            .rsvp-title {
+                font-size: 2.2rem;
+            }
+            
+            .radio-group {
+                flex-direction: column;
+                gap: 10px;
+            }
+            
+            .form-label {
+                font-size: 1.2rem;
+            }
+            
+            .submit-btn {
+                font-size: 1.3rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <!-- 顶部导航 -->
+        <nav class="main-nav">
+            <div class="nav-container">
+                <div class="logo">李让 & 杨清</div>
+                <ul class="nav-links">
+                    <li><a href="index.html">首页</a></li>
+                    <li><a href="story.html">我们的故事</a></li>
+                    <li><a href="details.html">婚礼详情</a></li>
+                    <li><a href="gallery.html">甜蜜相册</a></li>
+                    <li><a href="rsvp.html">在线回复</a></li>
+                    <li><a href="wishes.html">祝福留言</a></li>
+                    <li><a href="travel.html">交通住宿</a></li>
+                </ul>
+            </div>
+        </nav>
+
+        <!-- RSVP内容 -->
+        <div class="rsvp-container page-section">
+            <h1 class="rsvp-title animate__animated animate__fadeIn">"蛋"等你回音</h1>
+            
+            <div class="rsvp-intro animate__animated animate__fadeIn">
+                <p>感谢您对我们婚礼的关注！为了更好地安排座位和准备礼品，请您填写以下信息告诉我们您是否能够出席。</p>
+                <p class="deadline">请在 2025年8月31日 前回复</p>
+            </div>
+            
+            <!-- RSVP表单 -->
+            <div class="rsvp-form-container animate__animated animate__fadeIn">
+                <div class="form-decoration deco-1"></div>
+                <div class="form-decoration deco-2"></div>
+                
+                <form id="rsvpForm" onsubmit="return handleSubmit(event)">
+                    <div class="form-group">
+                        <label for="name" class="form-label form-required">您的姓名</label>
+                        <input type="text" id="name" name="name" class="form-input" required>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="phone" class="form-label">联系电话</label>
+                        <input type="tel" id="phone" name="phone" class="form-input">
+                    </div>
+                    
+                    <div class="form-group">
+                        <label class="form-label form-required">您是否能够出席我们的婚礼？</label>
+                        <div class="radio-group">
+                            <label class="radio-label">
+                                <input type="radio" name="attendance" value="yes" class="radio-input" required>
+                                欣然赴约，不见不散！
+                            </label>
+                            <label class="radio-label">
+                                <input type="radio" name="attendance" value="no" class="radio-input">
+                                含泪祝福，远程打Call！
+                            </label>
+                        </div>
+                    </div>
+                    
+                    <div class="form-group" id="attendeeGroup">
+                        <label for="adultCount" class="form-label">出席人数（成人）</label>
+                        <input type="number" id="adultCount" name="adultCount" min="1" max="10" value="1" class="form-input number-input">
+                    </div>
+                    
+                    <div class="form-group" id="kidsGroup">
+                        <label for="kidCount" class="form-label">携带小朋友人数</label>
+                        <input type="number" id="kidCount" name="kidCount" min="0" max="5" value="0" class="form-input number-input">
+                        <p class="form-note">如有小朋友，我们会准备特别的活动和小礼物</p>
+                    </div>
+                    
+                    <div class="form-group" id="kidsAgeGroup" style="display: none;">
+                        <label for="kidsAge" class="form-label">小朋友年龄段</label>
+                        <input type="text" id="kidsAge" name="kidsAge" class="form-input" placeholder="例如：3岁、5岁">
+                        <p class="form-note">这将帮助我们为小朋友们准备合适的活动</p>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="dietaryRestrictions" class="form-label">饮食偏好/忌口</label>
+                        <input type="text" id="dietaryRestrictions" name="dietaryRestrictions" class="form-input" placeholder="例如：素食、海鲜过敏等">
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="message" class="form-label">想对新人说的话</label>
+                        <textarea id="message" name="message" class="form-textarea" placeholder="在这里写下您的祝福或俏皮话..."></textarea>
+                    </div>
+                    
+                    <button type="submit" class="submit-btn">提交回复</button>
+                </form>
+            </div>
+            
+            <!-- 提交成功信息 -->
+            <div id="formSuccess" class="form-success">
+                <div class="success-icon">✓</div>
+                <h2 class="success-title">收到啦！</h2>
+                <p class="success-message">我们的小本本上已经记下你啦！婚礼现场等你一起嗨！</p>
+            </div>
+        </div>
+
+        <!-- 页脚 -->
+        <footer>
+            <div class="footer-content">
+                <p>李让 & 杨清 | 2025年9月21日</p>
+                <p>期待与您共度美好时光！</p>
+            </div>
+        </footer>
+    </div>
+
+    <!-- JavaScript -->
+    <script src="js/scripts.js"></script>
+    <script>
+        // 显示/隐藏小朋友年龄输入框
+        document.addEventListener('DOMContentLoaded', function() {
+            const kidCountInput = document.getElementById('kidCount');
+            const kidsAgeGroup = document.getElementById('kidsAgeGroup');
+            
+            kidCountInput.addEventListener('change', function() {
+                if (parseInt(this.value) > 0) {
+                    kidsAgeGroup.style.display = 'block';
+                } else {
+                    kidsAgeGroup.style.display = 'none';
+                }
+            });
+            
+            // 出席与否影响后续表单项
+            const attendanceInputs = document.querySelectorAll('input[name="attendance"]');
+            const attendeeGroup = document.getElementById('attendeeGroup');
+            const kidsGroup = document.getElementById('kidsGroup');
+            
+            attendanceInputs.forEach(input => {
+                input.addEventListener('change', function() {
+                    if (this.value === 'yes') {
+                        attendeeGroup.style.display = 'block';
+                        kidsGroup.style.display = 'block';
+                    } else {
+                        attendeeGroup.style.display = 'none';
+                        kidsGroup.style.display = 'none';
+                        kidsAgeGroup.style.display = 'none';
+                    }
+                });
+            });
+        });
+        
+        // 表单提交处理
+        function handleSubmit(event) {
+            event.preventDefault();
+            
+            // 在实际项目中，这里应该有表单数据的验证和提交到服务器的代码
+            // 为了演示，我们只显示成功消息
+            
+            const form = document.getElementById('rsvpForm');
+            const successMessage = document.getElementById('formSuccess');
+            
+            // 简单的客户端验证
+            const name = document.getElementById('name').value;
+            if (!name.trim()) {
+                alert('请填写您的姓名');
+                return false;
+            }
+            
+            const attendance = document.querySelector('input[name="attendance"]:checked');
+            if (!attendance) {
+                alert('请选择是否参加婚礼');
+                return false;
+            }
+            
+            // 隐藏表单，显示成功消息
+            form.parentElement.style.display = 'none';
+            successMessage.style.display = 'block';
+            
+            // 滚动到成功消息
+            successMessage.scrollIntoView({ behavior: 'smooth' });
+            
+            return false;
+        }
+    </script>
+</body>
+</html> 

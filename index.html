@@ -3,633 +3,77 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>2025年4月用户活跃与礼物打赏分析</title>
-    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
-    <script src="https://cdn.jsdelivr.net/npm/echarts@5.4.3/dist/echarts.min.js"></script>
-    <style>
-        body {
-            font-family: 'Microsoft YaHei', Arial, sans-serif;
-            line-height: 1.6;
-            color: #333;
-            max-width: 1200px;
-            margin: 0 auto;
-            padding: 20px;
-            background-color: #f9f9f9;
-        }
-        h1, h2, h3 {
-            color: #2c3e50;
-        }
-        h1 {
-            text-align: center;
-            border-bottom: 2px solid #3498db;
-            padding-bottom: 10px;
-            margin-bottom: 30px;
-        }
-        .dashboard {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(500px, 1fr));
-            gap: 20px;
-            margin-bottom: 30px;
-        }
-        .chart-container {
-            background: white;
-            border-radius: 8px;
-            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-            padding: 15px;
-            margin-bottom: 20px;
-            height: 400px;
-        }
-        .kpi-container {
-            display: flex;
-            justify-content: space-between;
-            margin-bottom: 30px;
-        }
-        .kpi-card {
-            background: white;
-            border-radius: 8px;
-            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-            padding: 20px;
-            flex: 1;
-            margin: 0 10px;
-            text-align: center;
-        }
-        .kpi-value {
-            font-size: 36px;
-            font-weight: bold;
-            color: #3498db;
-            margin: 10px 0;
-        }
-        .kpi-title {
-            font-size: 16px;
-            color: #7f8c8d;
-        }
-        .highlight {
-            background-color: #f1c40f;
-            padding: 2px 5px;
-            border-radius: 3px;
-            font-weight: bold;
-        }
-        table {
-            width: 100%;
-            border-collapse: collapse;
-            margin: 20px 0;
-            background-color: white;
-            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-            border-radius: 8px;
-            overflow: hidden;
-        }
-        th, td {
-            border: 1px solid #ddd;
-            padding: 12px 15px;
-            text-align: left;
-        }
-        th {
-            background-color: #3498db;
-            color: white;
-            font-weight: bold;
-        }
-        tr:nth-child(even) {
-            background-color: #f2f2f2;
-        }
-        tr:hover {
-            background-color: #e9f7fe;
-        }
-        .conclusion {
-            background: white;
-            border-radius: 8px;
-            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-            padding: 20px;
-            margin-top: 30px;
-        }
-        .conclusion h2 {
-            border-bottom: 1px solid #ddd;
-            padding-bottom: 10px;
-        }
-        .daily-trend {
-            height: 300px;
-            margin-bottom: 30px;
-        }
-    </style>
+    <title>李让 & 杨清的婚礼邀请</title>
+    <link rel="stylesheet" href="css/styles.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Ma+Shan+Zheng&family=ZCOOL+KuaiLe&family=ZCOOL+QingKe+HuangYou&display=swap" rel="stylesheet">
 </head>
 <body>
-    <h1>2025年4月用户活跃与礼物打赏分析报告</h1>
-    
-    <div class="kpi-container">
-        <div class="kpi-card">
-            <div class="kpi-title">月活跃用户</div>
-            <div class="kpi-value">190,139</div>
-            <div>日均: 26,668 用户</div>
-        </div>
-        <div class="kpi-card">
-            <div class="kpi-title">礼物打赏总额</div>
-            <div class="kpi-value">38.5亿</div>
-            <div>金币</div>
-        </div>
-        <div class="kpi-card">
-            <div class="kpi-title">礼物收入总额</div>
-            <div class="kpi-value">6.7亿</div>
-            <div>钻石</div>
-        </div>
-        <div class="kpi-card">
-            <div class="kpi-title">打赏用户数</div>
-            <div class="kpi-value">7.4万</div>
-            <div>平均每人打赏: 52,027金币</div>
-        </div>
+    <div class="container">
+        <!-- 顶部导航 -->
+        <nav class="main-nav">
+            <div class="nav-container">
+                <div class="logo">李让 & 杨清</div>
+                <ul class="nav-links">
+                    <li><a href="index.html">首页</a></li>
+                    <li><a href="story.html">我们的故事</a></li>
+                    <li><a href="details.html">婚礼详情</a></li>
+                    <li><a href="gallery.html">甜蜜相册</a></li>
+                    <li><a href="rsvp.html">在线回复</a></li>
+                    <li><a href="wishes.html">祝福留言</a></li>
+                    <li><a href="travel.html">交通住宿</a></li>
+                </ul>
+            </div>
+        </nav>
+
+        <!-- 首页主要内容 -->
+        <section class="hero page-section">
+            <div class="hero-content animate__animated animate__fadeIn">
+                <h1 class="main-title">欢迎来到我们的"蛋"生派对！</h1>
+                <div class="sub-title">叮咚！你有一份来自李让和'大卤蛋'杨清的甜蜜暴击，请火速查收！</div>
+                <div class="couple-illustration">
+                    <!-- 这里将放置新人卡通形象 -->
+                    <img src="images/couple.png" alt="李让和杨清的卡通形象" class="couple-img">
+                </div>
+                <div class="countdown-container">
+                    <h3>婚礼倒计时</h3>
+                    <div id="countdown" class="countdown">
+                        <div class="time-block">
+                            <span id="days">00</span>
+                            <span class="time-label">天</span>
+                        </div>
+                        <div class="time-block">
+                            <span id="hours">00</span>
+                            <span class="time-label">时</span>
+                        </div>
+                        <div class="time-block">
+                            <span id="minutes">00</span>
+                            <span class="time-label">分</span>
+                        </div>
+                        <div class="time-block">
+                            <span id="seconds">00</span>
+                            <span class="time-label">秒</span>
+                        </div>
+                    </div>
+                </div>
+                <div class="wedding-date">
+                    <p>2025年9月21日 星期日 上午11:00</p>
+                    <p>辽宁省营口市天赋婚礼殿堂（渤海大街东）</p>
+                </div>
+                <a href="rsvp.html" class="cta-button">我要参加</a>
+            </div>
+        </section>
+
+        <!-- 页脚 -->
+        <footer>
+            <div class="footer-content">
+                <p>李让 & 杨清 | 2025年9月21日</p>
+                <p>期待与您共度美好时光！</p>
+            </div>
+        </footer>
     </div>
 
-    <h2>每日活跃用户趋势</h2>
-    <div class="chart-container daily-trend" id="dailyActiveUsers"></div>
-    
-    <div class="dashboard">
-        <div class="chart-container">
-            <h3>各国活跃用户分布</h3>
-            <canvas id="activeUsersChart"></canvas>
-        </div>
-        <div class="chart-container">
-            <h3>各国礼物打赏金额</h3>
-            <canvas id="giftAmountChart"></canvas>
-        </div>
-        <div class="chart-container">
-            <h3>人均礼物打赏金额(金币)</h3>
-            <canvas id="avgGiftChart"></canvas>
-        </div>
-        <div class="chart-container">
-            <h3>礼物收入分布(钻石)</h3>
-            <canvas id="receiveAmountChart"></canvas>
-        </div>
-    </div>
-
-    <h2>礼物打赏排行榜(Top 10)</h2>
-    <table>
-        <thead>
-            <tr>
-                <th>排名</th>
-                <th>国家</th>
-                <th>打赏金额(金币)</th>
-                <th>打赏用户数</th>
-                <th>人均打赏(金币)</th>
-            </tr>
-        </thead>
-        <tbody>
-            <tr>
-                <td>1</td>
-                <td>沙特阿拉伯(SA)</td>
-                <td>1,511,853,930</td>
-                <td>6,063</td>
-                <td>249,357</td>
-            </tr>
-            <tr>
-                <td>2</td>
-                <td>埃及(EG)</td>
-                <td>1,085,002,070</td>
-                <td>35,748</td>
-                <td>30,351</td>
-            </tr>
-            <tr>
-                <td>3</td>
-                <td>黎巴嫩(LB)</td>
-                <td>207,009,380</td>
-                <td>1,448</td>
-                <td>142,961</td>
-            </tr>
-            <tr>
-                <td>4</td>
-                <td>叙利亚(SY)</td>
-                <td>166,519,410</td>
-                <td>3,990</td>
-                <td>41,734</td>
-            </tr>
-            <tr>
-                <td>5</td>
-                <td>科威特(KW)</td>
-                <td>119,322,980</td>
-                <td>408</td>
-                <td>292,458</td>
-            </tr>
-            <tr>
-                <td>6</td>
-                <td>土耳其(TR)</td>
-                <td>108,293,590</td>
-                <td>4,516</td>
-                <td>23,980</td>
-            </tr>
-            <tr>
-                <td>7</td>
-                <td>阿联酋(AE)</td>
-                <td>101,742,680</td>
-                <td>436</td>
-                <td>233,355</td>
-            </tr>
-            <tr>
-                <td>8</td>
-                <td>摩洛哥(MA)</td>
-                <td>97,914,050</td>
-                <td>4,175</td>
-                <td>23,452</td>
-            </tr>
-            <tr>
-                <td>9</td>
-                <td>伊拉克(IQ)</td>
-                <td>63,452,790</td>
-                <td>2,944</td>
-                <td>21,553</td>
-            </tr>
-            <tr>
-                <td>10</td>
-                <td>卡塔尔(QA)</td>
-                <td>62,707,200</td>
-                <td>71</td>
-                <td>883,200</td>
-            </tr>
-        </tbody>
-    </table>
-
-    <h2>礼物收入排行榜(Top 10)</h2>
-    <table>
-        <thead>
-            <tr>
-                <th>排名</th>
-                <th>国家</th>
-                <th>收入金额(钻石)</th>
-                <th>收礼用户数</th>
-                <th>人均收入(钻石)</th>
-            </tr>
-        </thead>
-        <tbody>
-            <tr>
-                <td>1</td>
-                <td>埃及(EG)</td>
-                <td>309,746,680</td>
-                <td>8,619</td>
-                <td>35,937</td>
-            </tr>
-            <tr>
-                <td>2</td>
-                <td>叙利亚(SY)</td>
-                <td>129,666,918</td>
-                <td>1,275</td>
-                <td>101,699</td>
-            </tr>
-            <tr>
-                <td>3</td>
-                <td>沙特阿拉伯(SA)</td>
-                <td>90,049,884</td>
-                <td>685</td>
-                <td>131,459</td>
-            </tr>
-            <tr>
-                <td>4</td>
-                <td>黎巴嫩(LB)</td>
-                <td>38,178,296</td>
-                <td>365</td>
-                <td>104,599</td>
-            </tr>
-            <tr>
-                <td>5</td>
-                <td>摩洛哥(MA)</td>
-                <td>28,803,566</td>
-                <td>1,106</td>
-                <td>26,043</td>
-            </tr>
-            <tr>
-                <td>6</td>
-                <td>巴勒斯坦(PS)</td>
-                <td>11,885,884</td>
-                <td>56</td>
-                <td>212,248</td>
-            </tr>
-            <tr>
-                <td>7</td>
-                <td>土耳其(TR)</td>
-                <td>11,856,264</td>
-                <td>486</td>
-                <td>24,395</td>
-            </tr>
-            <tr>
-                <td>8</td>
-                <td>阿尔及利亚(DZ)</td>
-                <td>9,680,650</td>
-                <td>926</td>
-                <td>10,454</td>
-            </tr>
-            <tr>
-                <td>9</td>
-                <td>卡塔尔(QA)</td>
-                <td>7,097,400</td>
-                <td>18</td>
-                <td>394,300</td>
-            </tr>
-            <tr>
-                <td>10</td>
-                <td>突尼斯(TN)</td>
-                <td>5,824,926</td>
-                <td>107</td>
-                <td>54,439</td>
-            </tr>
-        </tbody>
-    </table>
-
-    <div class="conclusion">
-        <h2>关键发现与洞察</h2>
-        <ol>
-            <li>
-                <strong>用户分布特点</strong>：
-                <ul>
-                    <li>活跃用户高度集中在中东和北非地区，埃及一国就占全球活跃用户的<span class="highlight">50%以上</span></li>
-                    <li>欧美地区活跃用户较少，主要是中东和北非地区的海外diaspora人群</li>
-                </ul>
-            </li>
-            <li>
-                <strong>打赏行为特点</strong>：
-                <ul>
-                    <li>沙特阿拉伯的人均打赏金额(249,357金币)远高于其他国家，是典型的高ARPU市场</li>
-                    <li>卡塔尔虽然用户数较少(71人)，但人均打赏高达<span class="highlight">883,200金币</span>，显示出海湾国家用户的高消费能力</li>
-                    <li>埃及用户数量最多，但人均打赏(30,351金币)远低于海湾国家</li>
-                </ul>
-            </li>
-            <li>
-                <strong>收入分布特点</strong>：
-                <ul>
-                    <li>埃及是最大的收入市场，拥有最多的收礼用户(8,619人)</li>
-                    <li>巴勒斯坦、卡塔尔的收礼用户人均收入最高，分别为212,248和394,300钻石</li>
-                    <li>收礼用户主要集中在埃及、叙利亚等中低收入国家，形成了从海湾富国向中东北非其他国家的资金流动</li>
-                </ul>
-            </li>
-            <li>
-                <strong>市场结构洞察</strong>：
-                <ul>
-                    <li>平台呈现明显的"打赏者-收礼者"二元结构，海湾富国(沙特、科威特、卡塔尔、阿联酋)主要是打赏方，而埃及、叙利亚等国家主要是收礼方</li>
-                    <li>所有国家都呈现"打赏金额>收入金额"的情况，说明存在跨国礼物流动，平台抽成是重要收入来源</li>
-                </ul>
-            </li>
-        </ol>
-
-        <h2>建议与策略</h2>
-        <ol>
-            <li>
-                <strong>差异化市场策略</strong>：
-                <ul>
-                    <li>海湾国家：发展更多高价值礼物和VIP服务，提高高消费用户的留存和活跃度</li>
-                    <li>埃及市场：提升直播和内容质量，增加用户黏性和日活</li>
-                    <li>叙利亚、黎巴嫩等市场：鼓励更多用户成为内容创作者，优化收礼机制</li>
-                </ul>
-            </li>
-            <li>
-                <strong>产品优化方向</strong>：
-                <ul>
-                    <li>针对海湾国家高消费人群开发专属特权和服务</li>
-                    <li>优化跨国礼物打赏体验，减少文化和语言障碍</li>
-                    <li>开发更多本地化内容和活动，提高用户参与度</li>
-                </ul>
-            </li>
-            <li>
-                <strong>内容创作者策略</strong>：
-                <ul>
-                    <li>在埃及和叙利亚等国家大力发展内容创作者生态</li>
-                    <li>为海湾国家用户提供更多与创作者互动的机会</li>
-                    <li>建立更完善的创作者激励机制，改善收入分配</li>
-                </ul>
-            </li>
-        </ol>
-    </div>
-
-    <script>
-        // 每日活跃用户数据
-        const dailyData = {
-            dates: ['04-01', '04-02', '04-03', '04-04', '04-05', '04-06', '04-07', '04-08', '04-09', '04-10', 
-                   '04-11', '04-12', '04-13', '04-14', '04-15', '04-16', '04-17', '04-18', '04-19', '04-20', '04-21', '04-22'],
-            users: [26269, 26992, 27511, 28465, 28064, 27716, 27484, 27318, 27858, 27003, 
-                   26562, 25879, 25826, 25583, 26185, 26275, 26613, 26683, 25516, 25501, 25651, 25737]
-        };
-
-        // 各国活跃用户数据
-        const activeUsersData = {
-            countries: ['埃及(EG)', '阿尔及利亚(DZ)', '沙特阿拉伯(SA)', '摩洛哥(MA)', '土耳其(TR)', '伊拉克(IQ)', '叙利亚(SY)', '伊朗(IR)', '约旦(JO)', '黎巴嫩(LB)'],
-            users: [96705, 18200, 14375, 12832, 12684, 11202, 9629, 6331, 4875, 4157]
-        };
-
-        // 礼物打赏金额数据
-        const giftAmountData = {
-            countries: ['沙特阿拉伯(SA)', '埃及(EG)', '黎巴嫩(LB)', '叙利亚(SY)', '科威特(KW)', '土耳其(TR)', '阿联酋(AE)', '摩洛哥(MA)', '伊拉克(IQ)', '卡塔尔(QA)'],
-            amounts: [1511853930, 1085002070, 207009380, 166519410, 119322980, 108293590, 101742680, 97914050, 63452790, 62707200]
-        };
-
-        // 人均礼物打赏数据
-        const avgGiftData = {
-            countries: ['卡塔尔(QA)', '科威特(KW)', '沙特阿拉伯(SA)', '阿联酋(AE)', '黎巴嫩(LB)', '叙利亚(SY)', '埃及(EG)', '土耳其(TR)', '摩洛哥(MA)', '伊拉克(IQ)'],
-            avgAmounts: [883200, 292458, 249357, 233355, 142961, 41734, 30351, 23980, 23452, 21553]
-        };
-
-        // 礼物收入数据
-        const receiveAmountData = {
-            countries: ['埃及(EG)', '叙利亚(SY)', '沙特阿拉伯(SA)', '黎巴嫩(LB)', '摩洛哥(MA)', '巴勒斯坦(PS)', '土耳其(TR)', '阿尔及利亚(DZ)', '卡塔尔(QA)', '突尼斯(TN)'],
-            amounts: [309746680, 129666918, 90049884, 38178296, 28803566, 11885884, 11856264, 9680650, 7097400, 5824926]
-        };
-
-        // 每日活跃用户趋势图
-        const dailyTrendChart = echarts.init(document.getElementById('dailyActiveUsers'));
-        const dailyOption = {
-            tooltip: {
-                trigger: 'axis',
-                formatter: '{b}: {c} 用户'
-            },
-            xAxis: {
-                type: 'category',
-                data: dailyData.dates,
-                axisLabel: {
-                    rotate: 45
-                }
-            },
-            yAxis: {
-                type: 'value',
-                name: '活跃用户数',
-                min: 25000
-            },
-            series: [{
-                data: dailyData.users,
-                type: 'line',
-                smooth: true,
-                lineStyle: {
-                    width: 4,
-                    color: '#3498db'
-                },
-                areaStyle: {
-                    color: {
-                        type: 'linear',
-                        x: 0,
-                        y: 0,
-                        x2: 0,
-                        y2: 1,
-                        colorStops: [{
-                            offset: 0, color: 'rgba(52, 152, 219, 0.6)'
-                        }, {
-                            offset: 1, color: 'rgba(52, 152, 219, 0.1)'
-                        }]
-                    }
-                },
-                markPoint: {
-                    data: [
-                        {type: 'max', name: '最大值'},
-                        {type: 'min', name: '最小值'}
-                    ]
-                }
-            }]
-        };
-        dailyTrendChart.setOption(dailyOption);
-
-        // 活跃用户分布图
-        const activeUsersCtx = document.getElementById('activeUsersChart').getContext('2d');
-        new Chart(activeUsersCtx, {
-            type: 'pie',
-            data: {
-                labels: activeUsersData.countries,
-                datasets: [{
-                    data: activeUsersData.users,
-                    backgroundColor: [
-                        '#FF6384', '#36A2EB', '#FFCE56', '#4BC0C0', '#9966FF',
-                        '#FF9F40', '#8AC249', '#EA526F', '#23689B', '#606C38'
-                    ]
-                }]
-            },
-            options: {
-                responsive: true,
-                maintainAspectRatio: false,
-                plugins: {
-                    legend: {
-                        position: 'right'
-                    },
-                    tooltip: {
-                        callbacks: {
-                            label: function(context) {
-                                const label = context.label || '';
-                                const value = context.raw || 0;
-                                const percentage = ((value / activeUsersData.users.reduce((a, b) => a + b, 0)) * 100).toFixed(1);
-                                return `${label}: ${value.toLocaleString()} (${percentage}%)`;
-                            }
-                        }
-                    }
-                }
-            }
-        });
-
-        // 礼物打赏金额图
-        const giftAmountCtx = document.getElementById('giftAmountChart').getContext('2d');
-        new Chart(giftAmountCtx, {
-            type: 'bar',
-            data: {
-                labels: giftAmountData.countries,
-                datasets: [{
-                    label: '礼物打赏金额(金币)',
-                    data: giftAmountData.amounts,
-                    backgroundColor: '#3498db'
-                }]
-            },
-            options: {
-                responsive: true,
-                maintainAspectRatio: false,
-                plugins: {
-                    legend: {
-                        display: false
-                    }
-                },
-                scales: {
-                    y: {
-                        beginAtZero: true,
-                        ticks: {
-                            callback: function(value) {
-                                if (value >= 1000000000) {
-                                    return (value / 1000000000).toFixed(1) + 'B';
-                                } else if (value >= 1000000) {
-                                    return (value / 1000000).toFixed(1) + 'M';
-                                }
-                                return value;
-                            }
-                        }
-                    }
-                }
-            }
-        });
-
-        // 人均礼物打赏图
-        const avgGiftCtx = document.getElementById('avgGiftChart').getContext('2d');
-        new Chart(avgGiftCtx, {
-            type: 'bar',
-            data: {
-                labels: avgGiftData.countries,
-                datasets: [{
-                    label: '人均打赏(金币)',
-                    data: avgGiftData.avgAmounts,
-                    backgroundColor: '#27ae60'
-                }]
-            },
-            options: {
-                responsive: true,
-                maintainAspectRatio: false,
-                plugins: {
-                    legend: {
-                        display: false
-                    }
-                },
-                scales: {
-                    y: {
-                        beginAtZero: true,
-                        ticks: {
-                            callback: function(value) {
-                                if (value >= 1000000) {
-                                    return (value / 1000000).toFixed(1) + 'M';
-                                } else if (value >= 1000) {
-                                    return (value / 1000).toFixed(1) + 'K';
-                                }
-                                return value;
-                            }
-                        }
-                    }
-                }
-            }
-        });
-
-        // 礼物收入分布图
-        const receiveAmountCtx = document.getElementById('receiveAmountChart').getContext('2d');
-        new Chart(receiveAmountCtx, {
-            type: 'bar',
-            data: {
-                labels: receiveAmountData.countries,
-                datasets: [{
-                    label: '礼物收入(钻石)',
-                    data: receiveAmountData.amounts,
-                    backgroundColor: '#e74c3c'
-                }]
-            },
-            options: {
-                responsive: true,
-                maintainAspectRatio: false,
-                plugins: {
-                    legend: {
-                        display: false
-                    }
-                },
-                scales: {
-                    y: {
-                        beginAtZero: true,
-                        ticks: {
-                            callback: function(value) {
-                                if (value >= 1000000000) {
-                                    return (value / 1000000000).toFixed(1) + 'B';
-                                } else if (value >= 1000000) {
-                                    return (value / 1000000).toFixed(1) + 'M';
-                                }
-                                return value;
-                            }
-                        }
-                    }
-                }
-            }
-        });
-
-        // 自适应重绘
-        window.addEventListener('resize', function() {
-            dailyTrendChart.resize();
-        });
-    </script>
+    <!-- JavaScript -->
+    <script src="js/scripts.js"></script>
 </body>
 </html> 

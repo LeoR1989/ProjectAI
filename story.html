@@ -1,0 +1,245 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>我们的故事 - 李让 & 杨清的婚礼邀请</title>
+    <link rel="stylesheet" href="css/styles.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Ma+Shan+Zheng&family=ZCOOL+KuaiLe&family=ZCOOL+QingKe+HuangYou&display=swap" rel="stylesheet">
+    <style>
+        /* 故事页面特殊样式 */
+        .story-container {
+            padding: 120px 20px 50px;
+            max-width: 900px;
+            margin: 0 auto;
+        }
+        
+        .story-title {
+            font-family: var(--font-title);
+            font-size: 3rem;
+            color: var(--secondary-color);
+            text-align: center;
+            margin-bottom: 30px;
+            text-shadow: 2px 2px 0 white;
+            position: relative;
+        }
+        
+        .story-title::after {
+            content: '';
+            display: block;
+            width: 150px;
+            height: 5px;
+            background: var(--primary-color);
+            margin: 15px auto;
+            border-radius: 5px;
+        }
+        
+        .nickname-story {
+            background-color: var(--light-background);
+            padding: 30px;
+            border-radius: 20px;
+            margin-bottom: 40px;
+            position: relative;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+            border: 3px solid var(--primary-color);
+        }
+        
+        .nickname-story::before {
+            content: '大卤蛋昵称的由来';
+            position: absolute;
+            top: -15px;
+            left: 30px;
+            background-color: var(--primary-color);
+            padding: 5px 15px;
+            border-radius: 20px;
+            font-family: var(--font-heading);
+            font-size: 1.2rem;
+            color: var(--dark-accent);
+        }
+        
+        .story-comics {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 30px;
+            margin: 40px 0;
+        }
+        
+        .comic-panel {
+            background-color: white;
+            border-radius: 15px;
+            overflow: hidden;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+            transform: rotate(-1deg);
+            transition: all 0.3s ease;
+            border: 3px solid var(--secondary-color);
+        }
+        
+        .comic-panel:nth-child(even) {
+            transform: rotate(1deg);
+        }
+        
+        .comic-panel:hover {
+            transform: scale(1.03) rotate(0);
+        }
+        
+        .comic-img {
+            width: 100%;
+            height: 200px;
+            object-fit: cover;
+        }
+        
+        .comic-caption {
+            padding: 15px;
+            font-family: var(--font-text);
+            font-size: 1rem;
+            text-align: center;
+            color: var(--dark-accent);
+        }
+        
+        .proposal-story {
+            background-color: white;
+            padding: 30px;
+            border-radius: 20px;
+            margin: 40px 0;
+            position: relative;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+            border: 3px dashed var(--secondary-color);
+        }
+        
+        .proposal-title {
+            font-family: var(--font-heading);
+            font-size: 2rem;
+            color: var(--secondary-color);
+            margin-bottom: 20px;
+            text-align: center;
+        }
+        
+        .proposal-content {
+            font-family: var(--font-text);
+            font-size: 1.1rem;
+            line-height: 1.8;
+        }
+        
+        .proposal-img {
+            max-width: 100%;
+            border-radius: 15px;
+            margin: 20px 0;
+            box-shadow: 0 5px 10px rgba(0,0,0,0.1);
+        }
+        
+        .quote-bubble {
+            position: relative;
+            background-color: var(--accent-color-1);
+            padding: 20px;
+            border-radius: 20px;
+            margin: 30px 0;
+            font-family: var(--font-heading);
+            font-size: 1.3rem;
+            text-align: center;
+            color: var(--dark-accent);
+        }
+        
+        .quote-bubble::before {
+            content: '';
+            position: absolute;
+            bottom: -15px;
+            left: 50px;
+            border-width: 15px 15px 0;
+            border-style: solid;
+            border-color: var(--accent-color-1) transparent;
+        }
+        
+        @media screen and (max-width: 768px) {
+            .story-title {
+                font-size: 2.2rem;
+            }
+            
+            .comic-panel {
+                margin-bottom: 20px;
+            }
+            
+            .proposal-title {
+                font-size: 1.8rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <!-- 顶部导航 -->
+        <nav class="main-nav">
+            <div class="nav-container">
+                <div class="logo">李让 & 杨清</div>
+                <ul class="nav-links">
+                    <li><a href="index.html">首页</a></li>
+                    <li><a href="story.html">我们的故事</a></li>
+                    <li><a href="details.html">婚礼详情</a></li>
+                    <li><a href="gallery.html">甜蜜相册</a></li>
+                    <li><a href="rsvp.html">在线回复</a></li>
+                    <li><a href="wishes.html">祝福留言</a></li>
+                    <li><a href="travel.html">交通住宿</a></li>
+                </ul>
+            </div>
+        </nav>
+
+        <!-- 故事内容 -->
+        <div class="story-container page-section">
+            <h1 class="story-title animate__animated animate__fadeIn">属于"大卤蛋"的爱情喜剧</h1>
+            
+            <!-- 昵称故事 -->
+            <div class="nickname-story animate__animated animate__fadeIn">
+                <p>相信不少好友都知道，我们可爱的新娘杨清有一个非常独特的昵称："大卤蛋"。这个名字的由来充满了温馨与趣味。在李让眼中，杨清圆圆的脸蛋和温暖的性格，就像一颗香味四溢的卤蛋，给人带来舒适和满足感。</p>
+                <p>而"大"字则体现了她在李让心中的重要地位 —— 她是世界上最重要、最特别的那颗"卤蛋"。这个昵称虽然听起来有点搞笑，却包含了无限的爱意，也成为了两人爱情中独特的密码。</p>
+            </div>
+            
+            <!-- 漫画故事 -->
+            <div class="story-comics">
+                <div class="comic-panel animate__animated animate__fadeIn">
+                    <img src="images/comic-1.png" alt="初次相遇" class="comic-img">
+                    <div class="comic-caption">初次相遇的那天，李让就被杨清的笑容深深吸引</div>
+                </div>
+                <div class="comic-panel animate__animated animate__fadeIn" style="animation-delay: 0.2s;">
+                    <img src="images/comic-2.png" alt="甜蜜约会" class="comic-img">
+                    <div class="comic-caption">一起看电影、吃火锅，平凡却充满甜蜜的日常</div>
+                </div>
+                <div class="comic-panel animate__animated animate__fadeIn" style="animation-delay: 0.4s;">
+                    <img src="images/comic-3.png" alt="互相扶持" class="comic-img">
+                    <div class="comic-caption">在彼此最需要的时刻，总能给予最温暖的支持</div>
+                </div>
+            </div>
+            
+            <!-- 济州岛求婚故事 -->
+            <div class="proposal-story animate__animated animate__fadeIn">
+                <h2 class="proposal-title">济州岛的浪漫求婚</h2>
+                <div class="proposal-content">
+                    <p>2024年春天，李让精心策划了一场前往韩国济州岛的旅行。表面上只是一次普通的度假，但他的背包里却藏着一枚精心挑选的钻戒和满满的期待。</p>
+                    
+                    <div class="quote-bubble">
+                        "其实我一直有个小秘密，这次旅行的真正目的是为了向我的'大卤蛋'求婚！"
+                    </div>
+                    
+                    <p>在济州岛最美的海岸线上，夕阳西下的那一刻，李让单膝跪地，将戒指递向惊讶的杨清。周围的游客都停下脚步，为这温馨的时刻鼓掌喝彩。</p>
+                    
+                    <img src="images/proposal.png" alt="济州岛求婚照" class="proposal-img">
+                    
+                    <p>当然，"大卤蛋"说了"Yes"！泪水与笑容在她脸上交织，这成为了两人爱情故事中最闪亮的一章。</p>
+                    
+                    <p>从相识、相知到相恋，再到现在即将步入婚姻的殿堂，李让和杨清的爱情故事虽然没有惊天动地的情节，却充满了生活中点滴的温暖与感动。正如李让常说的："平凡的日子里有你，便是我最大的幸福。"</p>
+                </div>
+            </div>
+        </div>
+
+        <!-- 页脚 -->
+        <footer>
+            <div class="footer-content">
+                <p>李让 & 杨清 | 2025年9月21日</p>
+                <p>期待与您共度美好时光！</p>
+            </div>
+        </footer>
+    </div>
+
+    <!-- JavaScript -->
+    <script src="js/scripts.js"></script>
+</body>
+</html> 

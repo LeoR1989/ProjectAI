@@ -1,0 +1,617 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>祝福留言 - 李让 & 杨清的婚礼邀请</title>
+    <link rel="stylesheet" href="css/styles.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Ma+Shan+Zheng&family=ZCOOL+KuaiLe&family=ZCOOL+QingKe+HuangYou&display=swap" rel="stylesheet">
+    <style>
+        /* 祝福页面特殊样式 */
+        .wishes-container {
+            padding: 120px 20px 50px;
+            max-width: 1000px;
+            margin: 0 auto;
+        }
+        
+        .wishes-title {
+            font-family: var(--font-title);
+            font-size: 3rem;
+            color: var(--secondary-color);
+            text-align: center;
+            margin-bottom: 30px;
+            text-shadow: 2px 2px 0 white;
+        }
+        
+        .wishes-title::after {
+            content: '';
+            display: block;
+            width: 150px;
+            height: 5px;
+            background: var(--primary-color);
+            margin: 15px auto;
+            border-radius: 5px;
+        }
+        
+        .wishes-intro {
+            text-align: center;
+            font-family: var(--font-text);
+            font-size: 1.2rem;
+            color: var(--dark-accent);
+            margin-bottom: 30px;
+            background-color: var(--light-background);
+            padding: 20px;
+            border-radius: 15px;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+            border: 3px dashed var(--secondary-color);
+        }
+        
+        .wishes-form-container {
+            background-color: white;
+            padding: 30px;
+            border-radius: 20px;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+            border: 5px solid var(--primary-color);
+            margin-bottom: 40px;
+            position: relative;
+        }
+        
+        .form-group {
+            margin-bottom: 25px;
+        }
+        
+        .form-label {
+            display: block;
+            font-family: var(--font-heading);
+            font-size: 1.3rem;
+            color: var(--dark-accent);
+            margin-bottom: 8px;
+        }
+        
+        .form-required::after {
+            content: '*';
+            color: var(--secondary-color);
+            margin-left: 5px;
+        }
+        
+        .form-input, .form-textarea {
+            width: 100%;
+            padding: 12px 15px;
+            border: 2px solid var(--accent-color-1);
+            border-radius: 10px;
+            font-family: var(--font-text);
+            font-size: 1.1rem;
+            color: var(--dark-accent);
+            background-color: var(--light-background);
+            transition: all 0.3s ease;
+        }
+        
+        .form-input:focus, .form-textarea:focus {
+            outline: none;
+            border-color: var(--primary-color);
+            box-shadow: 0 0 8px rgba(255, 218, 99, 0.6);
+        }
+        
+        .form-textarea {
+            resize: vertical;
+            min-height: 120px;
+        }
+        
+        .avatar-select {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 15px;
+            margin-top: 10px;
+        }
+        
+        .avatar-option {
+            position: relative;
+            width: 60px;
+            height: 60px;
+            border-radius: 50%;
+            overflow: hidden;
+            cursor: pointer;
+            border: 3px solid transparent;
+            transition: all 0.3s ease;
+        }
+        
+        .avatar-option:hover, .avatar-option.selected {
+            border-color: var(--secondary-color);
+            transform: scale(1.1);
+        }
+        
+        .avatar-option img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+        
+        .avatar-input {
+            position: absolute;
+            opacity: 0;
+            width: 100%;
+            height: 100%;
+            cursor: pointer;
+        }
+        
+        .submit-btn {
+            display: inline-block;
+            padding: 12px 30px;
+            background-color: var(--secondary-color);
+            border: none;
+            border-radius: 50px;
+            color: white;
+            font-family: var(--font-heading);
+            font-size: 1.3rem;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            margin-top: 10px;
+            border: 2px solid white;
+            box-shadow: 0 4px 0 rgba(0,0,0,0.1);
+        }
+        
+        .submit-btn:hover {
+            background-color: var(--primary-color);
+            color: var(--dark-accent);
+            transform: translateY(-5px);
+            box-shadow: 0 7px 0 rgba(0,0,0,0.1);
+        }
+        
+        .submit-btn:active {
+            transform: translateY(0);
+            box-shadow: 0 2px 0 rgba(0,0,0,0.1);
+        }
+        
+        .wishes-wall {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+            gap: 25px;
+            margin-top: 40px;
+        }
+        
+        .wish-card {
+            background-color: white;
+            border-radius: 15px;
+            padding: 20px;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+            border: 3px solid var(--accent-color-1);
+            position: relative;
+            transition: all 0.3s ease;
+            transform: rotate(-1deg);
+        }
+        
+        .wish-card:nth-child(even) {
+            transform: rotate(1deg);
+            border-color: var(--primary-color);
+        }
+        
+        .wish-card:hover {
+            transform: scale(1.03) rotate(0);
+            z-index: 1;
+            box-shadow: 0 10px 25px rgba(0,0,0,0.15);
+        }
+        
+        .wish-header {
+            display: flex;
+            align-items: center;
+            margin-bottom: 15px;
+        }
+        
+        .wish-avatar {
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            overflow: hidden;
+            margin-right: 15px;
+            border: 2px solid var(--primary-color);
+        }
+        
+        .wish-avatar img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+        
+        .wish-author {
+            font-family: var(--font-heading);
+            font-size: 1.2rem;
+            color: var(--dark-accent);
+        }
+        
+        .wish-date {
+            font-family: var(--font-text);
+            font-size: 0.9rem;
+            color: #888;
+            margin-top: 3px;
+        }
+        
+        .wish-content {
+            font-family: var(--font-text);
+            font-size: 1.1rem;
+            color: var(--dark-accent);
+            line-height: 1.6;
+            padding: 10px 0;
+            border-top: 1px dashed var(--accent-color-1);
+        }
+        
+        .wish-stamp {
+            position: absolute;
+            top: -15px;
+            right: -15px;
+            width: 60px;
+            height: 60px;
+            background-image: url('images/stamp.png');
+            background-size: contain;
+            background-repeat: no-repeat;
+            transform: rotate(15deg);
+        }
+        
+        .heart-floating {
+            position: absolute;
+            width: 20px;
+            height: 20px;
+            background-image: url('images/heart.png');
+            background-size: contain;
+            background-repeat: no-repeat;
+            animation: floating 3s ease-in-out infinite;
+        }
+        
+        .heart-1 {
+            top: 10px;
+            left: 10px;
+            animation-delay: 0s;
+        }
+        
+        .heart-2 {
+            bottom: 20px;
+            right: 30px;
+            animation-delay: 1s;
+        }
+        
+        .heart-3 {
+            top: 50%;
+            left: 20px;
+            animation-delay: 1.5s;
+        }
+        
+        @keyframes floating {
+            0% {
+                transform: translateY(0) rotate(0);
+            }
+            50% {
+                transform: translateY(-10px) rotate(10deg);
+            }
+            100% {
+                transform: translateY(0) rotate(0);
+            }
+        }
+        
+        .pagination {
+            display: flex;
+            justify-content: center;
+            margin-top: 40px;
+            gap: 10px;
+        }
+        
+        .page-btn {
+            width: 40px;
+            height: 40px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            background-color: white;
+            border: 2px solid var(--primary-color);
+            border-radius: 50%;
+            color: var(--dark-accent);
+            font-family: var(--font-text);
+            font-size: 1.1rem;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+        
+        .page-btn:hover, .page-btn.active {
+            background-color: var(--primary-color);
+            color: var(--dark-accent);
+            transform: translateY(-3px);
+            box-shadow: 0 5px 10px rgba(0,0,0,0.1);
+        }
+        
+        .no-wishes {
+            text-align: center;
+            padding: 40px;
+            font-family: var(--font-text);
+            font-size: 1.3rem;
+            color: var(--dark-accent);
+            background-color: var(--light-background);
+            border-radius: 15px;
+            border: 3px dashed var(--primary-color);
+        }
+        
+        @media screen and (max-width: 768px) {
+            .wishes-title {
+                font-size: 2.2rem;
+            }
+            
+            .avatar-select {
+                justify-content: center;
+            }
+            
+            .wishes-wall {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <!-- 顶部导航 -->
+        <nav class="main-nav">
+            <div class="nav-container">
+                <div class="logo">李让 & 杨清</div>
+                <ul class="nav-links">
+                    <li><a href="index.html">首页</a></li>
+                    <li><a href="story.html">我们的故事</a></li>
+                    <li><a href="details.html">婚礼详情</a></li>
+                    <li><a href="gallery.html">甜蜜相册</a></li>
+                    <li><a href="rsvp.html">在线回复</a></li>
+                    <li><a href="wishes.html">祝福留言</a></li>
+                    <li><a href="travel.html">交通住宿</a></li>
+                </ul>
+            </div>
+        </nav>
+
+        <!-- 祝福内容 -->
+        <div class="wishes-container page-section">
+            <h1 class="wishes-title animate__animated animate__fadeIn">"蛋"幕祝福墙</h1>
+            
+            <div class="wishes-intro animate__animated animate__fadeIn">
+                <p>感谢您访问我们的婚礼网站！请在这里留下您对我们的祝福和祈愿，这将成为我们最珍贵的礼物。</p>
+                <p>您的每一条留言，都将被永久保存在我们的爱情记忆中。</p>
+            </div>
+            
+            <!-- 祝福表单 -->
+            <div class="wishes-form-container animate__animated animate__fadeIn">
+                <form id="wishesForm" onsubmit="return submitWish(event)">
+                    <div class="form-group">
+                        <label for="name" class="form-label form-required">您的名字</label>
+                        <input type="text" id="name" name="name" class="form-input" required>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label class="form-label">选择头像</label>
+                        <div class="avatar-select">
+                            <div class="avatar-option">
+                                <input type="radio" name="avatar" value="avatar-1" class="avatar-input" checked>
+                                <img src="images/avatar-1.png" alt="头像1">
+                            </div>
+                            <div class="avatar-option">
+                                <input type="radio" name="avatar" value="avatar-2" class="avatar-input">
+                                <img src="images/avatar-2.png" alt="头像2">
+                            </div>
+                            <div class="avatar-option">
+                                <input type="radio" name="avatar" value="avatar-3" class="avatar-input">
+                                <img src="images/avatar-3.png" alt="头像3">
+                            </div>
+                            <div class="avatar-option">
+                                <input type="radio" name="avatar" value="avatar-4" class="avatar-input">
+                                <img src="images/avatar-4.png" alt="头像4">
+                            </div>
+                            <div class="avatar-option">
+                                <input type="radio" name="avatar" value="avatar-5" class="avatar-input">
+                                <img src="images/avatar-5.png" alt="头像5">
+                            </div>
+                            <div class="avatar-option">
+                                <input type="radio" name="avatar" value="avatar-6" class="avatar-input">
+                                <img src="images/avatar-6.png" alt="头像6">
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="wish" class="form-label form-required">您的祝福</label>
+                        <textarea id="wish" name="wish" class="form-textarea" required placeholder="在这里写下您对新人的祝福或美好祈愿..."></textarea>
+                    </div>
+                    
+                    <button type="submit" class="submit-btn">发送祝福</button>
+                </form>
+            </div>
+            
+            <!-- 祝福墙 -->
+            <h2 style="font-family: var(--font-heading); text-align: center; margin: 40px 0 20px; color: var(--dark-accent);">满满的祝福</h2>
+            
+            <div class="wishes-wall" id="wishesWall">
+                <!-- 预设的示例祝福卡片 -->
+                <div class="wish-card animate__animated animate__fadeIn">
+                    <div class="heart-floating heart-1"></div>
+                    <div class="heart-floating heart-2"></div>
+                    <div class="wish-stamp"></div>
+                    <div class="wish-header">
+                        <div class="wish-avatar">
+                            <img src="images/avatar-1.png" alt="张伟">
+                        </div>
+                        <div>
+                            <div class="wish-author">张伟</div>
+                            <div class="wish-date">2025-05-10</div>
+                        </div>
+                    </div>
+                    <div class="wish-content">
+                        祝福李让和大卤蛋新婚快乐！希望你们的婚姻像煮熟的鸡蛋一样，表面看起来平淡无奇，但内在充满营养与能量！永远甜蜜幸福！
+                    </div>
+                </div>
+                
+                <div class="wish-card animate__animated animate__fadeIn" style="animation-delay: 0.2s;">
+                    <div class="heart-floating heart-3"></div>
+                    <div class="wish-stamp"></div>
+                    <div class="wish-header">
+                        <div class="wish-avatar">
+                            <img src="images/avatar-2.png" alt="王芳">
+                        </div>
+                        <div>
+                            <div class="wish-author">王芳</div>
+                            <div class="wish-date">2025-05-15</div>
+                        </div>
+                    </div>
+                    <div class="wish-content">
+                        恭喜李让终于把"大卤蛋"成功带回家啦！希望你们的爱情像卤蛋一样，历久弥香，越来越有味道！祝你们新婚快乐，早生贵子！
+                    </div>
+                </div>
+                
+                <div class="wish-card animate__animated animate__fadeIn" style="animation-delay: 0.4s;">
+                    <div class="heart-floating heart-2"></div>
+                    <div class="wish-stamp"></div>
+                    <div class="wish-header">
+                        <div class="wish-avatar">
+                            <img src="images/avatar-3.png" alt="李明">
+                        </div>
+                        <div>
+                            <div class="wish-author">李明</div>
+                            <div class="wish-date">2025-05-20</div>
+                        </div>
+                    </div>
+                    <div class="wish-content">
+                        看到你们携手步入婚姻的殿堂，真是太开心了！希望你们的生活充满欢声笑语，爱情甜蜜如初，婚姻幸福美满！等着喝你们的喜酒啦！
+                    </div>
+                </div>
+                
+                <div class="wish-card animate__animated animate__fadeIn" style="animation-delay: 0.6s;">
+                    <div class="heart-floating heart-1"></div>
+                    <div class="heart-floating heart-3"></div>
+                    <div class="wish-stamp"></div>
+                    <div class="wish-header">
+                        <div class="wish-avatar">
+                            <img src="images/avatar-4.png" alt="刘洋">
+                        </div>
+                        <div>
+                            <div class="wish-author">刘洋</div>
+                            <div class="wish-date">2025-05-25</div>
+                        </div>
+                    </div>
+                    <div class="wish-content">
+                        从相识到相爱，从相爱到相守，愿你们的爱情故事继续书写更多精彩的篇章！祝李让和"大卤蛋"新婚快乐，白头偕老！
+                    </div>
+                </div>
+                
+                <!-- 如果没有祝福，显示提示 -->
+                <!-- <div class="no-wishes">
+                    暂时还没有祝福，成为第一个送上祝福的人吧！
+                </div> -->
+            </div>
+            
+            <!-- 分页 -->
+            <div class="pagination">
+                <button class="page-btn active">1</button>
+                <button class="page-btn">2</button>
+                <button class="page-btn">3</button>
+                <button class="page-btn">→</button>
+            </div>
+        </div>
+
+        <!-- 页脚 -->
+        <footer>
+            <div class="footer-content">
+                <p>李让 & 杨清 | 2025年9月21日</p>
+                <p>期待与您共度美好时光！</p>
+            </div>
+        </footer>
+    </div>
+
+    <!-- JavaScript -->
+    <script src="js/scripts.js"></script>
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            // 头像选择功能
+            const avatarOptions = document.querySelectorAll('.avatar-option');
+            avatarOptions.forEach(option => {
+                const radioInput = option.querySelector('.avatar-input');
+                
+                radioInput.addEventListener('change', function() {
+                    // 移除所有选中状态
+                    avatarOptions.forEach(opt => opt.classList.remove('selected'));
+                    
+                    // 如果当前input被选中，给其父元素添加selected类
+                    if (this.checked) {
+                        option.classList.add('selected');
+                    }
+                });
+                
+                // 初始化选中状态
+                if (radioInput.checked) {
+                    option.classList.add('selected');
+                }
+            });
+            
+            // 分页功能
+            const pageButtons = document.querySelectorAll('.page-btn');
+            pageButtons.forEach(button => {
+                button.addEventListener('click', function() {
+                    pageButtons.forEach(btn => btn.classList.remove('active'));
+                    this.classList.add('active');
+                    
+                    // 在实际项目中，这里应该请求不同页的数据
+                    // 为了演示，我们只是切换按钮状态
+                });
+            });
+        });
+        
+        // 提交祝福表单
+        function submitWish(event) {
+            event.preventDefault();
+            
+            // 在实际项目中，这里应该有表单数据的验证和提交到服务器的代码
+            // 为了演示，我们只是添加一个新的祝福卡片到祝福墙
+            
+            const name = document.getElementById('name').value;
+            const wish = document.getElementById('wish').value;
+            const avatarValue = document.querySelector('input[name="avatar"]:checked').value;
+            
+            if (!name.trim() || !wish.trim()) {
+                alert('请填写完整的姓名和祝福内容');
+                return false;
+            }
+            
+            // 获取当前日期
+            const now = new Date();
+            const dateString = `${now.getFullYear()}-${String(now.getMonth() + 1).padStart(2, '0')}-${String(now.getDate()).padStart(2, '0')}`;
+            
+            // 创建新的祝福卡片HTML
+            const newWish = `
+                <div class="wish-card animate__animated animate__fadeIn animate__faster">
+                    <div class="heart-floating heart-1"></div>
+                    <div class="wish-stamp"></div>
+                    <div class="wish-header">
+                        <div class="wish-avatar">
+                            <img src="images/${avatarValue}.png" alt="${name}">
+                        </div>
+                        <div>
+                            <div class="wish-author">${name}</div>
+                            <div class="wish-date">${dateString}</div>
+                        </div>
+                    </div>
+                    <div class="wish-content">
+                        ${wish}
+                    </div>
+                </div>
+            `;
+            
+            // 添加到祝福墙的顶部
+            const wishesWall = document.getElementById('wishesWall');
+            wishesWall.insertAdjacentHTML('afterbegin', newWish);
+            
+            // 清空表单
+            document.getElementById('wishesForm').reset();
+            
+            // 如果有"暂无祝福"的提示，则移除
+            const noWishes = document.querySelector('.no-wishes');
+            if (noWishes) {
+                noWishes.remove();
+            }
+            
+            // 滚动到新添加的祝福卡片
+            wishesWall.firstChild.scrollIntoView({ behavior: 'smooth', block: 'center' });
+            
+            return false;
+        }
+    </script>
+</body>
+</html> 

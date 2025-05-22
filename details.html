@@ -1,0 +1,368 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>婚礼详情 - 李让 & 杨清的婚礼邀请</title>
+    <link rel="stylesheet" href="css/styles.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Ma+Shan+Zheng&family=ZCOOL+KuaiLe&family=ZCOOL+QingKe+HuangYou&display=swap" rel="stylesheet">
+    <style>
+        /* 详情页面特殊样式 */
+        .details-container {
+            padding: 120px 20px 50px;
+            max-width: 900px;
+            margin: 0 auto;
+        }
+        
+        .details-title {
+            font-family: var(--font-title);
+            font-size: 3rem;
+            color: var(--secondary-color);
+            text-align: center;
+            margin-bottom: 30px;
+            text-shadow: 2px 2px 0 white;
+            position: relative;
+        }
+        
+        .details-title::after {
+            content: '';
+            display: block;
+            width: 150px;
+            height: 5px;
+            background: var(--primary-color);
+            margin: 15px auto;
+            border-radius: 5px;
+        }
+        
+        .main-details {
+            background-color: white;
+            padding: 30px;
+            border-radius: 20px;
+            margin-bottom: 40px;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+            text-align: center;
+            border: 5px solid var(--primary-color);
+            position: relative;
+        }
+        
+        .details-date, .details-venue {
+            margin: 20px 0;
+        }
+        
+        .details-date h3, .details-venue h3 {
+            font-family: var(--font-heading);
+            font-size: 1.8rem;
+            color: var(--dark-accent);
+            margin-bottom: 10px;
+            display: inline-block;
+            background-color: var(--accent-color-1);
+            padding: 5px 15px;
+            border-radius: 50px;
+        }
+        
+        .details-date p, .details-venue p {
+            font-family: var(--font-text);
+            font-size: 1.5rem;
+            color: var(--secondary-color);
+            font-weight: bold;
+        }
+        
+        .details-venue p {
+            margin-bottom: 10px;
+        }
+        
+        .map-container {
+            height: 300px;
+            border-radius: 15px;
+            overflow: hidden;
+            margin: 20px 0;
+            border: 3px solid var(--accent-color-2);
+        }
+        
+        .map-container iframe {
+            width: 100%;
+            height: 100%;
+            border: none;
+        }
+        
+        .schedule-container {
+            background-color: var(--light-background);
+            padding: 30px;
+            border-radius: 20px;
+            margin: 40px 0;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+            border: 3px dashed var(--secondary-color);
+        }
+        
+        .schedule-title {
+            font-family: var(--font-heading);
+            font-size: 2rem;
+            color: var(--dark-accent);
+            text-align: center;
+            margin-bottom: 30px;
+        }
+        
+        .timeline {
+            position: relative;
+            max-width: 600px;
+            margin: 0 auto;
+        }
+        
+        .timeline::after {
+            content: '';
+            position: absolute;
+            width: 6px;
+            background-color: var(--primary-color);
+            top: 0;
+            bottom: 0;
+            left: 50%;
+            margin-left: -3px;
+            border-radius: 5px;
+        }
+        
+        .timeline-item {
+            padding: 10px 40px;
+            position: relative;
+            width: 50%;
+            box-sizing: border-box;
+            margin-bottom: 30px;
+        }
+        
+        .timeline-item::after {
+            content: '';
+            position: absolute;
+            width: 25px;
+            height: 25px;
+            right: -12px;
+            top: 15px;
+            border-radius: 50%;
+            background-color: white;
+            border: 4px solid var(--secondary-color);
+            z-index: 1;
+        }
+        
+        .timeline-item:nth-child(odd) {
+            left: 0;
+        }
+        
+        .timeline-item:nth-child(even) {
+            left: 50%;
+        }
+        
+        .timeline-item:nth-child(even)::after {
+            left: -12px;
+        }
+        
+        .timeline-content {
+            padding: 15px;
+            background-color: white;
+            border-radius: 10px;
+            box-shadow: 0 3px 10px rgba(0,0,0,0.1);
+            position: relative;
+        }
+        
+        .timeline-time {
+            font-family: var(--font-heading);
+            font-size: 1.3rem;
+            color: var(--secondary-color);
+            font-weight: bold;
+            margin-bottom: 5px;
+        }
+        
+        .timeline-event {
+            font-family: var(--font-text);
+            font-size: 1.1rem;
+            color: var(--dark-accent);
+        }
+        
+        .dress-code {
+            background-color: white;
+            padding: 25px;
+            border-radius: 20px;
+            margin: 40px 0;
+            text-align: center;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+            border: 3px solid var(--accent-color-1);
+        }
+        
+        .dress-code h3 {
+            font-family: var(--font-heading);
+            font-size: 1.8rem;
+            color: var(--dark-accent);
+            margin-bottom: 15px;
+        }
+        
+        .dress-code p {
+            font-family: var(--font-text);
+            font-size: 1.2rem;
+            color: var(--dark-accent);
+            line-height: 1.6;
+        }
+        
+        .hearts-decoration {
+            position: absolute;
+            width: 60px;
+            height: 60px;
+            background-image: url('images/hearts.png');
+            background-size: contain;
+            background-repeat: no-repeat;
+        }
+        
+        .hearts-1 {
+            top: -20px;
+            right: -20px;
+            transform: rotate(15deg);
+        }
+        
+        .hearts-2 {
+            bottom: -20px;
+            left: -20px;
+            transform: rotate(-15deg);
+        }
+        
+        @media screen and (max-width: 768px) {
+            .details-title {
+                font-size: 2.2rem;
+            }
+            
+            .details-date h3, .details-venue h3 {
+                font-size: 1.5rem;
+            }
+            
+            .details-date p, .details-venue p {
+                font-size: 1.3rem;
+            }
+            
+            .timeline::after {
+                left: 31px;
+            }
+            
+            .timeline-item {
+                width: 100%;
+                padding-left: 70px;
+                padding-right: 25px;
+            }
+            
+            .timeline-item::after {
+                left: 18px;
+                top: 15px;
+            }
+            
+            .timeline-item:nth-child(even) {
+                left: 0;
+            }
+            
+            .timeline-item:nth-child(even)::after {
+                left: 18px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <!-- 顶部导航 -->
+        <nav class="main-nav">
+            <div class="nav-container">
+                <div class="logo">李让 & 杨清</div>
+                <ul class="nav-links">
+                    <li><a href="index.html">首页</a></li>
+                    <li><a href="story.html">我们的故事</a></li>
+                    <li><a href="details.html">婚礼详情</a></li>
+                    <li><a href="gallery.html">甜蜜相册</a></li>
+                    <li><a href="rsvp.html">在线回复</a></li>
+                    <li><a href="wishes.html">祝福留言</a></li>
+                    <li><a href="travel.html">交通住宿</a></li>
+                </ul>
+            </div>
+        </nav>
+
+        <!-- 详情内容 -->
+        <div class="details-container page-section">
+            <h1 class="details-title animate__animated animate__fadeIn">婚礼的钟声即将敲响</h1>
+            
+            <!-- 主要详情 -->
+            <div class="main-details animate__animated animate__fadeIn">
+                <div class="hearts-decoration hearts-1"></div>
+                <div class="hearts-decoration hearts-2"></div>
+                
+                <div class="details-date">
+                    <h3>日期 & 时间</h3>
+                    <p>2025年9月21日 星期日</p>
+                    <p>上午11:00</p>
+                </div>
+                
+                <div class="details-venue">
+                    <h3>婚礼地点</h3>
+                    <p>辽宁省营口市天赋婚礼殿堂</p>
+                    <p>（渤海大街东）</p>
+                </div>
+                
+                <div class="map-container">
+                    <iframe src="https://maps.baidu.com/poi/%E5%A4%A9%E8%B5%8B%E5%A9%9A%E7%A4%BC%E6%AE%BF%E5%A0%82/@13511993.465,4946954.56,19z?uid=67fdf0f077def7e2b25003ac&ugc_type=3&ugc_ver=1&device_ratio=1&compat=1&pcevaname=pc4.1&querytype=detailConInfo&da_src=shareurl" allowfullscreen></iframe>
+                </div>
+            </div>
+            
+            <!-- 婚礼流程 -->
+            <div class="schedule-container animate__animated animate__fadeIn">
+                <h2 class="schedule-title">婚礼流程</h2>
+                
+                <div class="timeline">
+                    <div class="timeline-item">
+                        <div class="timeline-content">
+                            <div class="timeline-time">10:00 - 10:45</div>
+                            <div class="timeline-event">嘉宾签到 & 迎宾互动</div>
+                        </div>
+                    </div>
+                    
+                    <div class="timeline-item">
+                        <div class="timeline-content">
+                            <div class="timeline-time">11:00 - 11:45</div>
+                            <div class="timeline-event">婚礼仪式</div>
+                        </div>
+                    </div>
+                    
+                    <div class="timeline-item">
+                        <div class="timeline-content">
+                            <div class="timeline-time">12:00</div>
+                            <div class="timeline-event">喜宴开席</div>
+                        </div>
+                    </div>
+                    
+                    <div class="timeline-item">
+                        <div class="timeline-content">
+                            <div class="timeline-time">13:30 - 14:30</div>
+                            <div class="timeline-event">互动游戏 & 小朋友活动时间</div>
+                        </div>
+                    </div>
+                    
+                    <div class="timeline-item">
+                        <div class="timeline-content">
+                            <div class="timeline-time">15:00</div>
+                            <div class="timeline-event">甜蜜告别</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- 着装建议 -->
+            <div class="dress-code animate__animated animate__fadeIn">
+                <h3>着装建议</h3>
+                <p>轻松舒适，方便您与我们一同欢笑起舞！</p>
+                <p>请穿着您最美的笑容赴约！</p>
+            </div>
+        </div>
+
+        <!-- 页脚 -->
+        <footer>
+            <div class="footer-content">
+                <p>李让 & 杨清 | 2025年9月21日</p>
+                <p>期待与您共度美好时光！</p>
+            </div>
+        </footer>
+    </div>
+
+    <!-- JavaScript -->
+    <script src="js/scripts.js"></script>
+</body>
+</html> 

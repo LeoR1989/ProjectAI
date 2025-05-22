@@ -1,0 +1,477 @@
+/* 全局样式 */
+:root {
+    --primary-color: #FFDA63;   /* 暖黄色 */
+    --secondary-color: #FF7F50; /* 珊瑚粉 */
+    --accent-color-1: #AFFEE0;  /* 薄荷绿 */
+    --accent-color-2: #B0E0E6;  /* 淡天蓝 */
+    --dark-accent: #7B3F00;     /* 巧克力棕 */
+    --background-color: #F5F5DC;/* 米白色 */
+    --light-background: #FAEBD7; /* 浅杏色 */
+    --font-title: 'Ma Shan Zheng', cursive;
+    --font-heading: 'ZCOOL QingKe HuangYou', cursive;
+    --font-text: 'ZCOOL KuaiLe', cursive;
+    --nav-height: 70px;         /* 导航栏高度 */
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+html {
+    scroll-behavior: smooth;
+    height: 100%;
+    overflow: hidden; /* 为页面滚动效果准备 */
+}
+
+body {
+    font-family: var(--font-text);
+    background-color: var(--background-color);
+    color: var(--dark-accent);
+    line-height: 1.6;
+    overflow-x: hidden;
+    background-image: url('../images/bg-pattern.png');
+    background-repeat: repeat;
+    height: 100%;
+    overflow: auto; /* 允许内容滚动 */
+    position: relative;
+}
+
+.container {
+    width: 100%;
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 15px;
+    padding-top: var(--nav-height); /* 为固定导航栏留出空间 */
+}
+
+a {
+    text-decoration: none;
+    color: var(--dark-accent);
+    transition: all 0.3s ease;
+}
+
+ul {
+    list-style: none;
+}
+
+img {
+    max-width: 100%;
+    height: auto;
+}
+
+/* 导航栏样式 */
+.main-nav {
+    background-color: var(--primary-color);
+    padding: 10px 0;
+    box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+    position: fixed;
+    width: 100%;
+    top: 0;
+    z-index: 1000;
+    border-bottom: 3px dashed var(--secondary-color);
+    height: var(--nav-height);
+}
+
+.nav-container {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 20px;
+}
+
+.logo {
+    font-family: var(--font-title);
+    font-size: 2rem;
+    color: var(--dark-accent);
+    padding: 5px 15px;
+    background-color: white;
+    border-radius: 20px;
+    box-shadow: 3px 3px 0 var(--secondary-color);
+    transform: rotate(-2deg);
+    z-index: 10;
+}
+
+.nav-links {
+    display: flex;
+    justify-content: space-around;
+    width: 70%;
+}
+
+.nav-links li {
+    position: relative;
+}
+
+.nav-links a {
+    color: var(--dark-accent);
+    font-size: 1.2rem;
+    font-weight: bold;
+    padding: 5px 10px;
+    border-radius: 15px;
+    transition: all 0.3s ease;
+}
+
+.nav-links a:hover {
+    background-color: var(--secondary-color);
+    color: white;
+    transform: scale(1.1);
+}
+
+.burger {
+    display: none;
+}
+
+/* 英雄区域样式 */
+.hero {
+    height: calc(100vh - var(--nav-height));
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    position: relative;
+}
+
+.hero::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: url('../images/hero-bg.png') no-repeat center center/cover;
+    opacity: 0.2;
+    z-index: -1;
+}
+
+.hero-content {
+    max-width: 800px;
+    padding: 30px;
+    background-color: rgba(255, 255, 255, 0.8);
+    border-radius: 30px;
+    box-shadow: 0 10px 20px rgba(0,0,0,0.1);
+    border: 5px solid var(--primary-color);
+    position: relative;
+    z-index: 2;
+}
+
+.hero-content::before {
+    content: '';
+    position: absolute;
+    top: -20px;
+    left: -20px;
+    width: calc(100% + 40px);
+    height: calc(100% + 40px);
+    border: 2px dashed var(--secondary-color);
+    border-radius: 40px;
+    z-index: -1;
+}
+
+.main-title {
+    font-family: var(--font-title);
+    font-size: 3rem;
+    color: var(--secondary-color);
+    margin-bottom: 20px;
+    text-shadow: 2px 2px 0 white;
+}
+
+.sub-title {
+    font-family: var(--font-heading);
+    font-size: 1.5rem;
+    color: var(--dark-accent);
+    margin-bottom: 30px;
+}
+
+.couple-illustration {
+    margin: 30px 0;
+}
+
+.couple-img {
+    max-width: 300px;
+    filter: drop-shadow(3px 3px 5px rgba(0,0,0,0.2));
+}
+
+/* 倒计时样式 */
+.countdown-container {
+    margin: 30px 0;
+    padding: 20px;
+    background-color: var(--accent-color-1);
+    border-radius: 20px;
+    display: inline-block;
+}
+
+.countdown-container h3 {
+    font-family: var(--font-heading);
+    font-size: 1.8rem;
+    margin-bottom: 15px;
+    color: var(--dark-accent);
+}
+
+.countdown {
+    display: flex;
+    justify-content: center;
+    gap: 15px;
+}
+
+.time-block {
+    background-color: white;
+    padding: 10px 15px;
+    border-radius: 15px;
+    box-shadow: 2px 2px 0 var(--secondary-color);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    min-width: 70px;
+}
+
+.time-block span {
+    font-size: 2rem;
+    font-weight: bold;
+    color: var(--secondary-color);
+}
+
+.time-label {
+    font-size: 1.2rem !important;
+    color: var(--dark-accent) !important;
+}
+
+/* 婚礼日期样式 */
+.wedding-date {
+    margin: 20px 0;
+    font-family: var(--font-heading);
+    font-size: 1.3rem;
+    line-height: 1.8;
+}
+
+/* CTA按钮样式 */
+.cta-button {
+    display: inline-block;
+    padding: 12px 30px;
+    background-color: var(--secondary-color);
+    color: white;
+    font-size: 1.5rem;
+    font-weight: bold;
+    border-radius: 50px;
+    transition: all 0.3s ease;
+    margin-top: 20px;
+    box-shadow: 0 4px 0 rgba(0,0,0,0.2);
+    border: 2px solid white;
+}
+
+.cta-button:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 6px 0 rgba(0,0,0,0.2);
+    background-color: var(--primary-color);
+    color: var(--dark-accent);
+}
+
+.cta-button:active {
+    transform: translateY(0);
+    box-shadow: 0 2px 0 rgba(0,0,0,0.2);
+}
+
+/* 页脚样式 */
+footer {
+    background-color: var(--primary-color);
+    padding: 20px 0;
+    text-align: center;
+    margin-top: 50px;
+    border-top: 3px dashed var(--secondary-color);
+}
+
+.footer-content {
+    font-family: var(--font-text);
+    font-size: 1rem;
+    color: var(--dark-accent);
+}
+
+/* 页面滑动指示器 */
+.scroll-indicator {
+    position: absolute;
+    bottom: 30px;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    background-color: var(--secondary-color);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    cursor: pointer;
+    animation: bounce 2s infinite;
+    z-index: 10;
+}
+
+.scroll-indicator::after {
+    content: '';
+    width: 12px;
+    height: 12px;
+    border-right: 3px solid white;
+    border-bottom: 3px solid white;
+    transform: rotate(45deg) translateY(-3px);
+}
+
+/* 返回首页指示器特殊样式 */
+.scroll-indicator.back-to-home {
+    background-color: var(--primary-color);
+    animation: pulse 2s infinite;
+}
+
+.scroll-indicator.back-to-home::after {
+    transform: rotate(225deg) translateY(3px);
+    border-color: var(--dark-accent);
+}
+
+@keyframes bounce {
+    0%, 20%, 50%, 80%, 100% {
+        transform: translateX(-50%) translateY(0);
+    }
+    40% {
+        transform: translateX(-50%) translateY(-10px);
+    }
+    60% {
+        transform: translateX(-50%) translateY(-5px);
+    }
+}
+
+@keyframes pulse {
+    0% {
+        box-shadow: 0 0 0 0 rgba(255, 218, 99, 0.7);
+        transform: translateX(-50%) scale(1);
+    }
+    70% {
+        box-shadow: 0 0 0 10px rgba(255, 218, 99, 0);
+        transform: translateX(-50%) scale(1.1);
+    }
+    100% {
+        box-shadow: 0 0 0 0 rgba(255, 218, 99, 0);
+        transform: translateX(-50%) scale(1);
+    }
+}
+
+.page-section {
+    min-height: calc(100vh - var(--nav-height));
+    position: relative;
+    overflow: hidden;
+}
+
+/* 响应式设计 */
+@media screen and (max-width: 768px) {
+    .logo {
+        font-size: 1.5rem;
+        padding: 4px 10px;
+    }
+    
+    .nav-links {
+        width: 100%;
+        padding: 0 10px;
+        justify-content: space-between;
+        overflow-x: auto;
+        -webkit-overflow-scrolling: touch;
+        white-space: nowrap;
+        scrollbar-width: none; /* Firefox */
+    }
+    
+    .nav-links::-webkit-scrollbar {
+        display: none; /* Chrome, Safari, Edge */
+    }
+    
+    .nav-links li {
+        margin: 0 5px;
+    }
+    
+    .nav-links a {
+        font-size: 0.9rem;
+        padding: 5px 8px;
+        white-space: nowrap;
+    }
+    
+    .nav-container {
+        flex-direction: column;
+        align-items: center;
+    }
+    
+    .main-title {
+        font-size: 2.2rem;
+    }
+    
+    .sub-title {
+        font-size: 1.2rem;
+    }
+    
+    .countdown {
+        flex-wrap: wrap;
+    }
+    
+    .time-block {
+        min-width: 60px;
+    }
+    
+    .hero-content {
+        padding: 20px;
+        max-width: 90%;
+    }
+    
+    .couple-img {
+        max-width: 200px;
+    }
+    
+    .main-nav {
+        padding: 5px 0;
+        height: auto;
+    }
+    
+    :root {
+        --nav-height: 100px; /* 调整移动端的导航栏高度 */
+    }
+}
+
+@media screen and (max-width: 480px) {
+    .logo {
+        font-size: 1.3rem;
+        margin-bottom: 5px;
+    }
+    
+    .nav-links a {
+        font-size: 0.8rem;
+        padding: 4px 6px;
+    }
+    
+    .main-title {
+        font-size: 1.8rem;
+    }
+    
+    .sub-title {
+        font-size: 1rem;
+    }
+    
+    .time-block {
+        min-width: 50px;
+        padding: 8px 10px;
+    }
+    
+    .time-block span {
+        font-size: 1.5rem;
+    }
+    
+    .time-label {
+        font-size: 1rem !important;
+    }
+    
+    .wedding-date {
+        font-size: 1.1rem;
+    }
+    
+    .cta-button {
+        font-size: 1.2rem;
+        padding: 10px 20px;
+    }
+    
+    :root {
+        --nav-height: 90px; /* 调整更小屏幕的导航栏高度 */
+    }
+} 

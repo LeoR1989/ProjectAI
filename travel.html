@@ -1,0 +1,508 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>交通住宿 - 李让 & 杨清的婚礼邀请</title>
+    <link rel="stylesheet" href="css/styles.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Ma+Shan+Zheng&family=ZCOOL+KuaiLe&family=ZCOOL+QingKe+HuangYou&display=swap" rel="stylesheet">
+    <style>
+        /* 交通住宿页面特殊样式 */
+        .travel-container {
+            padding: 120px 20px 50px;
+            max-width: 900px;
+            margin: 0 auto;
+        }
+        
+        .travel-title {
+            font-family: var(--font-title);
+            font-size: 3rem;
+            color: var(--secondary-color);
+            text-align: center;
+            margin-bottom: 30px;
+            text-shadow: 2px 2px 0 white;
+        }
+        
+        .travel-title::after {
+            content: '';
+            display: block;
+            width: 150px;
+            height: 5px;
+            background: var(--primary-color);
+            margin: 15px auto;
+            border-radius: 5px;
+        }
+        
+        .travel-intro {
+            text-align: center;
+            font-family: var(--font-text);
+            font-size: 1.2rem;
+            color: var(--dark-accent);
+            margin-bottom: 40px;
+            background-color: var(--light-background);
+            padding: 20px;
+            border-radius: 15px;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+            border: 3px dashed var(--secondary-color);
+        }
+        
+        .section-container {
+            background-color: white;
+            padding: 30px;
+            border-radius: 20px;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+            margin-bottom: 40px;
+            position: relative;
+        }
+        
+        .section-title {
+            font-family: var(--font-heading);
+            font-size: 2rem;
+            color: var(--dark-accent);
+            margin-bottom: 20px;
+            text-align: center;
+            position: relative;
+            display: inline-block;
+            left: 50%;
+            transform: translateX(-50%);
+            padding: 0 20px;
+        }
+        
+        .section-title::before {
+            content: '';
+            position: absolute;
+            width: 40px;
+            height: 40px;
+            background-size: contain;
+            background-repeat: no-repeat;
+            left: -40px;
+            top: -5px;
+        }
+        
+        .venue-title::before {
+            background-image: url('images/venue-icon.png');
+        }
+        
+        .transport-title::before {
+            background-image: url('images/transport-icon.png');
+        }
+        
+        .hotel-title::before {
+            background-image: url('images/hotel-icon.png');
+        }
+        
+        .parking-title::before {
+            background-image: url('images/parking-icon.png');
+        }
+        
+        .kids-title::before {
+            background-image: url('images/kids-icon.png');
+        }
+        
+        .section-content {
+            font-family: var(--font-text);
+            font-size: 1.1rem;
+            color: var(--dark-accent);
+            line-height: 1.7;
+        }
+        
+        .venue-section {
+            border: 5px solid var(--primary-color);
+        }
+        
+        .transport-section {
+            border: 5px solid var(--accent-color-1);
+        }
+        
+        .hotel-section {
+            border: 5px solid var(--secondary-color);
+        }
+        
+        .parking-section {
+            border: 5px solid var(--accent-color-2);
+        }
+        
+        .kids-section {
+            border: 5px solid var(--primary-color);
+            background-color: var(--light-background);
+        }
+        
+        .map-container {
+            height: 300px;
+            border-radius: 15px;
+            overflow: hidden;
+            margin: 20px 0;
+            border: 3px solid var(--accent-color-2);
+        }
+        
+        .map-container iframe {
+            width: 100%;
+            height: 100%;
+            border: none;
+        }
+        
+        .transport-options {
+            margin-top: 20px;
+        }
+        
+        .transport-option {
+            margin-bottom: 25px;
+            position: relative;
+            padding-left: 30px;
+        }
+        
+        .transport-option::before {
+            content: '';
+            position: absolute;
+            width: 24px;
+            height: 24px;
+            background-size: contain;
+            background-repeat: no-repeat;
+            left: 0;
+            top: 2px;
+        }
+        
+        .car-option::before {
+            background-image: url('images/car-icon.png');
+        }
+        
+        .bus-option::before {
+            background-image: url('images/bus-icon.png');
+        }
+        
+        .train-option::before {
+            background-image: url('images/train-icon.png');
+        }
+        
+        .plane-option::before {
+            background-image: url('images/plane-icon.png');
+        }
+        
+        .transport-option h4 {
+            font-family: var(--font-heading);
+            font-size: 1.3rem;
+            color: var(--secondary-color);
+            margin-bottom: 10px;
+        }
+        
+        .hotel-list {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+            gap: 20px;
+            margin-top: 25px;
+        }
+        
+        .hotel-card {
+            background-color: var(--light-background);
+            border-radius: 15px;
+            overflow: hidden;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+            transition: all 0.3s ease;
+            border: 2px solid var(--accent-color-1);
+        }
+        
+        .hotel-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 25px rgba(0,0,0,0.15);
+        }
+        
+        .hotel-img {
+            width: 100%;
+            height: 150px;
+            object-fit: cover;
+        }
+        
+        .hotel-info {
+            padding: 15px;
+        }
+        
+        .hotel-name {
+            font-family: var(--font-heading);
+            font-size: 1.2rem;
+            color: var(--dark-accent);
+            margin-bottom: 8px;
+        }
+        
+        .hotel-address {
+            font-family: var(--font-text);
+            font-size: 0.9rem;
+            color: #666;
+            margin-bottom: 8px;
+        }
+        
+        .hotel-distance {
+            font-family: var(--font-text);
+            font-size: 0.9rem;
+            color: var(--secondary-color);
+            font-weight: bold;
+        }
+        
+        .hotel-phone {
+            font-family: var(--font-text);
+            font-size: 0.9rem;
+            color: #666;
+            margin-top: 5px;
+        }
+        
+        .kids-content {
+            background-color: white;
+            padding: 20px;
+            border-radius: 15px;
+            margin-top: 20px;
+        }
+        
+        .kids-list {
+            list-style-type: none;
+            margin-left: 20px;
+        }
+        
+        .kids-list li {
+            margin-bottom: 10px;
+            position: relative;
+            padding-left: 30px;
+        }
+        
+        .kids-list li::before {
+            content: '';
+            position: absolute;
+            width: 20px;
+            height: 20px;
+            background-image: url('images/star-icon.png');
+            background-size: contain;
+            background-repeat: no-repeat;
+            left: 0;
+            top: 2px;
+        }
+        
+        .contact-info {
+            margin-top: 40px;
+            text-align: center;
+            padding: 20px;
+            background-color: var(--light-background);
+            border-radius: 15px;
+            border: 3px dashed var(--secondary-color);
+        }
+        
+        .contact-title {
+            font-family: var(--font-heading);
+            font-size: 1.5rem;
+            color: var(--dark-accent);
+            margin-bottom: 15px;
+        }
+        
+        .contact-person {
+            margin: 10px 0;
+            font-family: var(--font-text);
+            font-size: 1.1rem;
+        }
+        
+        .contact-name {
+            font-weight: bold;
+            color: var(--secondary-color);
+        }
+        
+        @media screen and (max-width: 768px) {
+            .travel-title {
+                font-size: 2.2rem;
+            }
+            
+            .section-title {
+                font-size: 1.8rem;
+            }
+            
+            .hotel-list {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <!-- 顶部导航 -->
+        <nav class="main-nav">
+            <div class="nav-container">
+                <div class="logo">李让 & 杨清</div>
+                <ul class="nav-links">
+                    <li><a href="index.html">首页</a></li>
+                    <li><a href="story.html">我们的故事</a></li>
+                    <li><a href="details.html">婚礼详情</a></li>
+                    <li><a href="gallery.html">甜蜜相册</a></li>
+                    <li><a href="rsvp.html">在线回复</a></li>
+                    <li><a href="wishes.html">祝福留言</a></li>
+                    <li><a href="travel.html">交通住宿</a></li>
+                </ul>
+            </div>
+        </nav>
+
+        <!-- 交通住宿内容 -->
+        <div class="travel-container page-section">
+            <h1 class="travel-title animate__animated animate__fadeIn">赴宴全攻略</h1>
+            
+            <div class="travel-intro animate__animated animate__fadeIn">
+                <p>感谢您计划参加我们的婚礼！我们整理了以下信息，希望能帮助您轻松抵达婚礼现场。</p>
+                <p>如有任何问题，请随时联系我们！</p>
+            </div>
+            
+            <!-- 婚礼场地 -->
+            <div class="section-container venue-section animate__animated animate__fadeIn">
+                <h2 class="section-title venue-title">婚礼场地</h2>
+                <div class="section-content">
+                    <p>我们的婚礼将在<strong>辽宁省营口市天赋婚礼殿堂</strong>（渤海大街东）举行。</p>
+                    <p>这是一个优雅而浪漫的婚礼场地，拥有美丽的装饰和完善的设施，将为我们的特殊日子提供完美的背景。</p>
+                    
+                    <div class="map-container">
+                        <iframe src="https://maps.baidu.com/poi/%E5%A4%A9%E8%B5%8B%E5%A9%9A%E7%A4%BC%E6%AE%BF%E5%A0%82/@13511993.465,4946954.56,19z?uid=67fdf0f077def7e2b25003ac&ugc_type=3&ugc_ver=1&device_ratio=1&compat=1&pcevaname=pc4.1&querytype=detailConInfo&da_src=shareurl" allowfullscreen></iframe>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- 交通指南 -->
+            <div class="section-container transport-section animate__animated animate__fadeIn">
+                <h2 class="section-title transport-title">交通指南</h2>
+                <div class="section-content">
+                    <p>营口市位于辽宁省中南部，多种交通方式可抵达。以下是不同交通方式的详细指引：</p>
+                    
+                    <div class="transport-options">
+                        <div class="transport-option car-option">
+                            <h4>自驾车</h4>
+                            <p>从营口市中心出发：</p>
+                            <ol>
+                                <li>沿着渤海大街向东行驶约15分钟</li>
+                                <li>看到"天赋婚礼殿堂"指示牌后右转</li>
+                                <li>继续行驶约500米即可到达目的地</li>
+                            </ol>
+                            <p>如果您使用导航软件，直接搜索"天赋婚礼殿堂"即可。</p>
+                        </div>
+                        
+                        <div class="transport-option bus-option">
+                            <h4>公交车</h4>
+                            <p>可乘坐以下公交线路：</p>
+                            <ul>
+                                <li>9路公交车 - 在"婚礼殿堂站"下车，步行约300米</li>
+                                <li>15路公交车 - 在"渤海大街东站"下车，步行约500米</li>
+                                <li>23路公交车 - 在"市政府东站"下车，步行约800米</li>
+                            </ul>
+                        </div>
+                        
+                        <div class="transport-option train-option">
+                            <h4>火车</h4>
+                            <p>从营口站到婚礼场地：</p>
+                            <p>可在火车站乘坐出租车，车程约20分钟（根据交通情况），费用约30元。</p>
+                            <p>或乘坐5路公交车转9路公交车前往。</p>
+                        </div>
+                        
+                        <div class="transport-option plane-option">
+                            <h4>飞机</h4>
+                            <p>最近的机场是沈阳桃仙国际机场：</p>
+                            <p>从机场可乘坐机场大巴到营口（约2小时），然后转乘出租车前往婚礼场地。</p>
+                            <p>也可在机场直接包车前往营口，车程约1.5小时。</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- 住宿推荐 -->
+            <div class="section-container hotel-section animate__animated animate__fadeIn">
+                <h2 class="section-title hotel-title">住宿推荐</h2>
+                <div class="section-content">
+                    <p>为方便远道而来的宾客，我们推荐以下几家位于婚礼场地附近的酒店：</p>
+                    
+                    <div class="hotel-list">
+                        <div class="hotel-card">
+                            <img src="images/hotel-1.jpg" alt="营口海鲜大酒店" class="hotel-img">
+                            <div class="hotel-info">
+                                <h3 class="hotel-name">营口海鲜大酒店</h3>
+                                <p class="hotel-address">营口市站前区渤海大街18号</p>
+                                <p class="hotel-distance">距离婚礼场地：1.2公里</p>
+                                <p class="hotel-phone">联系电话：0417-2812345</p>
+                            </div>
+                        </div>
+                        
+                        <div class="hotel-card">
+                            <img src="images/hotel-2.jpg" alt="营口商务酒店" class="hotel-img">
+                            <div class="hotel-info">
+                                <h3 class="hotel-name">营口商务酒店</h3>
+                                <p class="hotel-address">营口市站前区市府路56号</p>
+                                <p class="hotel-distance">距离婚礼场地：0.8公里</p>
+                                <p class="hotel-phone">联系电话：0417-2856789</p>
+                            </div>
+                        </div>
+                        
+                        <div class="hotel-card">
+                            <img src="images/hotel-3.jpg" alt="渤海湾假日酒店" class="hotel-img">
+                            <div class="hotel-info">
+                                <h3 class="hotel-name">渤海湾假日酒店</h3>
+                                <p class="hotel-address">营口市站前区建设大街88号</p>
+                                <p class="hotel-distance">距离婚礼场地：1.5公里</p>
+                                <p class="hotel-phone">联系电话：0417-2834567</p>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <p style="margin-top: 20px; font-style: italic;">提示：建议提前预订酒店，并告知是参加"李让&杨清"的婚礼，部分酒店可能会提供特别优惠。</p>
+                </div>
+            </div>
+            
+            <!-- 停车信息 -->
+            <div class="section-container parking-section animate__animated animate__fadeIn">
+                <h2 class="section-title parking-title">停车信息</h2>
+                <div class="section-content">
+                    <p>天赋婚礼殿堂拥有宽敞的停车场，可容纳约100辆车，婚礼当天将为宾客提供免费停车服务。</p>
+                    <p>如果主停车场已满，附近还有两处备用停车场：</p>
+                    <ul>
+                        <li>渤海广场停车场 - 步行至婚礼场地约5分钟</li>
+                        <li>市民中心停车场 - 步行至婚礼场地约8分钟</li>
+                    </ul>
+                    <p>请注意：所有车辆请在10:30前抵达，以免影响婚礼流程。</p>
+                </div>
+            </div>
+            
+            <!-- 小朋友专区 -->
+            <div class="section-container kids-section animate__animated animate__fadeIn">
+                <h2 class="section-title kids-title">小朋友专区</h2>
+                <div class="section-content">
+                    <p>我们热烈欢迎各位亲友携带小朋友一同参加我们的婚礼！为了让小天使们也能度过愉快的时光，我们特别准备了：</p>
+                    
+                    <div class="kids-content">
+                        <ul class="kids-list">
+                            <li>专属儿童活动区，配备专业看护人员</li>
+                            <li>有趣的手工制作环节，让小朋友们发挥创意</li>
+                            <li>适合儿童的美食和点心</li>
+                            <li>婚礼互动环节中的儿童特别环节</li>
+                            <li>每位小朋友都将获得特别准备的精美礼物</li>
+                        </ul>
+                    </div>
+                    
+                    <p style="margin-top: 20px;">请在RSVP回复中告知我们小朋友的人数和年龄，以便我们做出更好的安排！</p>
+                </div>
+            </div>
+            
+            <!-- 联系信息 -->
+            <div class="contact-info animate__animated animate__fadeIn">
+                <h3 class="contact-title">还有问题？随时联系我们</h3>
+                <div class="contact-person">
+                    <span class="contact-name">李让：</span> 139-XXXX-XXXX
+                </div>
+                <div class="contact-person">
+                    <span class="contact-name">杨清：</span> 138-XXXX-XXXX
+                </div>
+                <div class="contact-person">
+                    <span class="contact-name">婚礼助理小王：</span> 135-XXXX-XXXX
+                </div>
+            </div>
+        </div>
+
+        <!-- 页脚 -->
+        <footer>
+            <div class="footer-content">
+                <p>李让 & 杨清 | 2025年9月21日</p>
+                <p>期待与您共度美好时光！</p>
+            </div>
+        </footer>
+    </div>
+
+    <!-- JavaScript -->
+    <script src="js/scripts.js"></script>
+</body>
+</html> 

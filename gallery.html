@@ -1,0 +1,418 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>甜蜜相册 - 李让 & 杨清的婚礼邀请</title>
+    <link rel="stylesheet" href="css/styles.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/lightbox2/2.11.3/css/lightbox.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Ma+Shan+Zheng&family=ZCOOL+KuaiLe&family=ZCOOL+QingKe+HuangYou&display=swap" rel="stylesheet">
+    <style>
+        /* 相册页面特殊样式 */
+        .gallery-container {
+            padding: 120px 20px 50px;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+        
+        .gallery-title {
+            font-family: var(--font-title);
+            font-size: 3rem;
+            color: var(--secondary-color);
+            text-align: center;
+            margin-bottom: 30px;
+            text-shadow: 2px 2px 0 white;
+        }
+        
+        .gallery-title::after {
+            content: '';
+            display: block;
+            width: 150px;
+            height: 5px;
+            background: var(--primary-color);
+            margin: 15px auto;
+            border-radius: 5px;
+        }
+        
+        .gallery-intro {
+            text-align: center;
+            font-family: var(--font-text);
+            font-size: 1.2rem;
+            color: var(--dark-accent);
+            max-width: 800px;
+            margin: 0 auto 40px;
+            background-color: var(--light-background);
+            padding: 20px;
+            border-radius: 15px;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+            border: 3px dashed var(--secondary-color);
+        }
+        
+        .photo-gallery {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+            gap: 20px;
+            margin-bottom: 50px;
+        }
+        
+        .photo-item {
+            position: relative;
+            border-radius: 15px;
+            overflow: hidden;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+            transition: all 0.3s ease;
+            transform: rotate(-1deg);
+            background-color: white;
+            padding: 10px;
+            border: 3px solid var(--primary-color);
+        }
+        
+        .photo-item:nth-child(even) {
+            transform: rotate(1deg);
+        }
+        
+        .photo-item:hover {
+            transform: scale(1.03) rotate(0);
+            z-index: 1;
+        }
+        
+        .photo-frame {
+            position: relative;
+            overflow: hidden;
+            border-radius: 10px;
+            aspect-ratio: 3/4;
+        }
+        
+        .photo-frame img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.5s ease;
+        }
+        
+        .photo-item:hover img {
+            transform: scale(1.1);
+        }
+        
+        .photo-caption {
+            font-family: var(--font-text);
+            text-align: center;
+            padding: 10px 5px 5px;
+            font-size: 1rem;
+            color: var(--dark-accent);
+        }
+        
+        .photo-filter {
+            display: flex;
+            justify-content: center;
+            flex-wrap: wrap;
+            margin-bottom: 30px;
+            gap: 10px;
+        }
+        
+        .filter-btn {
+            background-color: var(--light-background);
+            border: 2px solid var(--primary-color);
+            color: var(--dark-accent);
+            padding: 8px 15px;
+            border-radius: 30px;
+            cursor: pointer;
+            font-family: var(--font-text);
+            font-size: 1rem;
+            transition: all 0.3s ease;
+        }
+        
+        .filter-btn:hover, .filter-btn.active {
+            background-color: var(--primary-color);
+            color: var(--dark-accent);
+            transform: translateY(-3px);
+            box-shadow: 0 5px 10px rgba(0,0,0,0.1);
+        }
+        
+        .lightbox-container .lb-data .lb-caption {
+            font-family: var(--font-text);
+            font-size: 1.2rem;
+            color: white;
+        }
+        
+        .video-container {
+            margin: 40px auto;
+            max-width: 800px;
+            border-radius: 15px;
+            overflow: hidden;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.2);
+            border: 5px solid var(--primary-color);
+        }
+        
+        .video-container video {
+            width: 100%;
+            display: block;
+        }
+        
+        .video-title {
+            font-family: var(--font-heading);
+            font-size: 2rem;
+            color: var(--secondary-color);
+            text-align: center;
+            margin: 30px 0 20px;
+        }
+        
+        .tape {
+            position: absolute;
+            background-color: rgba(255, 218, 99, 0.7);
+            width: 60px;
+            height: 30px;
+            transform: rotate(-45deg);
+        }
+        
+        .tape-1 {
+            top: -5px;
+            left: -15px;
+        }
+        
+        .tape-2 {
+            bottom: -5px;
+            right: -15px;
+            transform: rotate(135deg);
+        }
+        
+        @media screen and (max-width: 768px) {
+            .gallery-title {
+                font-size: 2.2rem;
+            }
+            
+            .photo-gallery {
+                grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <!-- 顶部导航 -->
+        <nav class="main-nav">
+            <div class="nav-container">
+                <div class="logo">李让 & 杨清</div>
+                <ul class="nav-links">
+                    <li><a href="index.html">首页</a></li>
+                    <li><a href="story.html">我们的故事</a></li>
+                    <li><a href="details.html">婚礼详情</a></li>
+                    <li><a href="gallery.html">甜蜜相册</a></li>
+                    <li><a href="rsvp.html">在线回复</a></li>
+                    <li><a href="wishes.html">祝福留言</a></li>
+                    <li><a href="travel.html">交通住宿</a></li>
+                </ul>
+            </div>
+        </nav>
+
+        <!-- 相册内容 -->
+        <div class="gallery-container page-section">
+            <h1 class="gallery-title animate__animated animate__fadeIn">"蛋"格动画：甜蜜瞬间大放送</h1>
+            
+            <div class="gallery-intro animate__animated animate__fadeIn">
+                <p>这里记录了我们甜蜜的点点滴滴，从相爱到即将步入婚姻殿堂的珍贵瞬间。每一张照片都承载着我们的笑容和幸福，与您一同分享这段美好的旅程！</p>
+            </div>
+            
+            <!-- 筛选按钮 -->
+            <div class="photo-filter animate__animated animate__fadeIn">
+                <button class="filter-btn active" data-filter="all">全部</button>
+                <button class="filter-btn" data-filter="prewedding">婚纱照</button>
+                <button class="filter-btn" data-filter="daily">日常</button>
+                <button class="filter-btn" data-filter="travel">旅行</button>
+            </div>
+            
+            <!-- 照片墙 -->
+            <div class="photo-gallery">
+                <!-- 照片项目 - 使用 photos 文件夹中的照片 -->
+                <div class="photo-item animate__animated animate__fadeIn" data-category="prewedding">
+                    <div class="photo-frame">
+                        <div class="tape tape-1"></div>
+                        <div class="tape tape-2"></div>
+                        <a href="photos/DSC07182.jpg" data-lightbox="wedding-gallery" data-title="幸福的开始">
+                            <img src="photos/DSC07182.jpg" alt="婚纱照1">
+                        </a>
+                    </div>
+                    <div class="photo-caption">幸福的开始</div>
+                </div>
+                
+                <div class="photo-item animate__animated animate__fadeIn" data-category="prewedding">
+                    <div class="photo-frame">
+                        <div class="tape tape-1"></div>
+                        <div class="tape tape-2"></div>
+                        <a href="photos/DSC07230.jpg" data-lightbox="wedding-gallery" data-title="甜蜜对视">
+                            <img src="photos/DSC07230.jpg" alt="婚纱照2">
+                        </a>
+                    </div>
+                    <div class="photo-caption">甜蜜对视</div>
+                </div>
+                
+                <div class="photo-item animate__animated animate__fadeIn" data-category="prewedding">
+                    <div class="photo-frame">
+                        <div class="tape tape-1"></div>
+                        <div class="tape tape-2"></div>
+                        <a href="photos/DSC09284.jpg" data-lightbox="wedding-gallery" data-title="浪漫一刻">
+                            <img src="photos/DSC09284.jpg" alt="婚纱照3">
+                        </a>
+                    </div>
+                    <div class="photo-caption">浪漫一刻</div>
+                </div>
+                
+                <div class="photo-item animate__animated animate__fadeIn" data-category="travel">
+                    <div class="photo-frame">
+                        <div class="tape tape-1"></div>
+                        <div class="tape tape-2"></div>
+                        <a href="photos/DSC08335.jpg" data-lightbox="wedding-gallery" data-title="旅行时光">
+                            <img src="photos/DSC08335.jpg" alt="旅行照1">
+                        </a>
+                    </div>
+                    <div class="photo-caption">旅行时光</div>
+                </div>
+                
+                <div class="photo-item animate__animated animate__fadeIn" data-category="daily">
+                    <div class="photo-frame">
+                        <div class="tape tape-1"></div>
+                        <div class="tape tape-2"></div>
+                        <a href="photos/DSC07817.jpg" data-lightbox="wedding-gallery" data-title="日常欢乐">
+                            <img src="photos/DSC07817.jpg" alt="日常照1">
+                        </a>
+                    </div>
+                    <div class="photo-caption">日常欢乐</div>
+                </div>
+                
+                <div class="photo-item animate__animated animate__fadeIn" data-category="prewedding">
+                    <div class="photo-frame">
+                        <div class="tape tape-1"></div>
+                        <div class="tape tape-2"></div>
+                        <a href="photos/DSC09309.jpg" data-lightbox="wedding-gallery" data-title="完美合拍">
+                            <img src="photos/DSC09309.jpg" alt="婚纱照4">
+                        </a>
+                    </div>
+                    <div class="photo-caption">完美合拍</div>
+                </div>
+                
+                <div class="photo-item animate__animated animate__fadeIn" data-category="prewedding">
+                    <div class="photo-frame">
+                        <div class="tape tape-1"></div>
+                        <div class="tape tape-2"></div>
+                        <a href="photos/DSC09004.jpg" data-lightbox="wedding-gallery" data-title="浪漫瞬间">
+                            <img src="photos/DSC09004.jpg" alt="婚纱照5">
+                        </a>
+                    </div>
+                    <div class="photo-caption">浪漫瞬间</div>
+                </div>
+                
+                <div class="photo-item animate__animated animate__fadeIn" data-category="travel">
+                    <div class="photo-frame">
+                        <div class="tape tape-1"></div>
+                        <div class="tape tape-2"></div>
+                        <a href="photos/DSC08010.jpg" data-lightbox="wedding-gallery" data-title="旅途中的我们">
+                            <img src="photos/DSC08010.jpg" alt="旅行照2">
+                        </a>
+                    </div>
+                    <div class="photo-caption">旅途中的我们</div>
+                </div>
+                
+                <div class="photo-item animate__animated animate__fadeIn" data-category="daily">
+                    <div class="photo-frame">
+                        <div class="tape tape-1"></div>
+                        <div class="tape tape-2"></div>
+                        <a href="photos/DSC07328.jpg" data-lightbox="wedding-gallery" data-title="平凡的幸福">
+                            <img src="photos/DSC07328.jpg" alt="日常照2">
+                        </a>
+                    </div>
+                    <div class="photo-caption">平凡的幸福</div>
+                </div>
+                
+                <div class="photo-item animate__animated animate__fadeIn" data-category="prewedding">
+                    <div class="photo-frame">
+                        <div class="tape tape-1"></div>
+                        <div class="tape tape-2"></div>
+                        <a href="photos/DSC07952.jpg" data-lightbox="wedding-gallery" data-title="最美的你">
+                            <img src="photos/DSC07952.jpg" alt="婚纱照6">
+                        </a>
+                    </div>
+                    <div class="photo-caption">最美的你</div>
+                </div>
+                
+                <div class="photo-item animate__animated animate__fadeIn" data-category="prewedding">
+                    <div class="photo-frame">
+                        <div class="tape tape-1"></div>
+                        <div class="tape tape-2"></div>
+                        <a href="photos/DSC09015.jpg" data-lightbox="wedding-gallery" data-title="相伴一生">
+                            <img src="photos/DSC09015.jpg" alt="婚纱照7">
+                        </a>
+                    </div>
+                    <div class="photo-caption">相伴一生</div>
+                </div>
+                
+                <div class="photo-item animate__animated animate__fadeIn" data-category="travel">
+                    <div class="photo-frame">
+                        <div class="tape tape-1"></div>
+                        <div class="tape tape-2"></div>
+                        <a href="photos/DSC08000.jpg" data-lightbox="wedding-gallery" data-title="旅行记忆">
+                            <img src="photos/DSC08000.jpg" alt="旅行照3">
+                        </a>
+                    </div>
+                    <div class="photo-caption">旅行记忆</div>
+                </div>
+            </div>
+            
+            <!-- 视频部分 (如果有) -->
+            <h2 class="video-title animate__animated animate__fadeIn">我们的爱情微电影</h2>
+            <div class="video-container animate__animated animate__fadeIn">
+                <video controls poster="images/video-poster.jpg">
+                    <source src="videos/love-story.mp4" type="video/mp4">
+                    您的浏览器不支持视频播放，请升级浏览器。
+                </video>
+            </div>
+        </div>
+
+        <!-- 页脚 -->
+        <footer>
+            <div class="footer-content">
+                <p>李让 & 杨清 | 2025年9月21日</p>
+                <p>期待与您共度美好时光！</p>
+            </div>
+        </footer>
+    </div>
+
+    <!-- JavaScript -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/lightbox2/2.11.3/js/lightbox-plus-jquery.min.js"></script>
+    <script src="js/scripts.js"></script>
+    <script>
+        // 照片筛选功能
+        document.addEventListener('DOMContentLoaded', function() {
+            const filterButtons = document.querySelectorAll('.filter-btn');
+            const photoItems = document.querySelectorAll('.photo-item');
+            
+            filterButtons.forEach(button => {
+                button.addEventListener('click', function() {
+                    // 移除所有按钮的active类
+                    filterButtons.forEach(btn => btn.classList.remove('active'));
+                    // 为当前点击的按钮添加active类
+                    this.classList.add('active');
+                    
+                    const filterValue = this.getAttribute('data-filter');
+                    
+                    photoItems.forEach(item => {
+                        if (filterValue === 'all' || item.getAttribute('data-category') === filterValue) {
+                            item.style.display = 'block';
+                        } else {
+                            item.style.display = 'none';
+                        }
+                    });
+                });
+            });
+            
+            // Lightbox配置
+            lightbox.option({
+                'resizeDuration': 300,
+                'wrapAround': true,
+                'albumLabel': "%1 / %2",
+                'fadeDuration': 300
+            });
+        });
+    </script>
+</body>
+</html> 
